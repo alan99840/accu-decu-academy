@@ -28,6 +28,21 @@
 .term-checklist input:checked{background:var(--brand-green);border-color:var(--brand-green)}.term-checklist input:checked+span b{color:var(--brand-green)}
 @media(max-width:600px){.report-strip{padding:13px 10px}.sim-stats>div:nth-child(3){padding:15px 0 0;background:transparent}}
 @media print{.report-strip{background:#fff}.sim-stats>div:nth-child(3){background:#fff}.topbar{border-top:0}}
+
+/* Apple system typography: stronger reading weights and clear heading hierarchy. */
+:root{--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","PingFang SC","PingFang TC","Helvetica Neue","Segoe UI","Microsoft YaHei",sans-serif}
+body{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.9;font-kerning:normal}
+h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:-.7px}h2,h3{font-weight:600}
+.hero-deck{font-size:17px;line-height:1.9}.section-intro{font-size:16px}
+.product-card p,.teaching-note p,.worked-example p,.mechanism-grid p,.warning-box p,.risk-columns ul{font-size:15px;line-height:1.9}
+.nav-item{font-size:13px;font-weight:600}.sidebar-secondary{font-size:12px;font-weight:500}
+.eyebrow,.small-label,.sidebar-label,.brand,.product-tag{font-family:var(--sans);font-weight:600}.eyebrow{font-size:11px;letter-spacing:1.2px}
+.hero-meta,.report-strip,.report-strip b,.mini-flow,.chart-header,.chart-legend,.chart-note,.sim-assumptions{font-weight:500}
+.sim-controls label,.sim-controls legend,.term-checklist small,.glossary-grid p,.footer-details p,.source-list p{font-weight:500}
+.sim-stats strong{font-family:var(--sans);font-weight:600;font-variant-numeric:tabular-nums}.section-number,.flow-days b,.exposure-calculation b{font-weight:600}
+.chart-container svg text{font-family:var(--sans);font-weight:500}table{font-weight:500}
+@media(max-width:600px){body{font-size:15px;line-height:1.9}h1{letter-spacing:-1px}h1 span{font-size:25px;letter-spacing:-.5px}.hero-deck{font-size:15px}.section-intro{font-size:14px}.product-card p,.teaching-note p,.worked-example p,.mechanism-grid p,.warning-box p,.risk-columns ul{font-size:14px}.nav-item{font-size:14px}.sim-controls select,.segmented button{font-size:11px}.chart-legend{font-size:9px}}
+@media print{body{font-size:11px;font-weight:400}.hero-deck,.section-intro,.product-card p,.teaching-note p,.worked-example p,.mechanism-grid p,.warning-box p,.risk-columns ul{font-size:11px}}
 </style>
 
 </head>
