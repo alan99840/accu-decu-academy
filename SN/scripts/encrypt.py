@@ -23,7 +23,7 @@ def main():
         fd=os.open(a.key_file,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
         with os.fdopen(fd,'w') as f:f.write(secrets.token_urlsafe(32))
     password=a.key_file.read_text().strip()
-    if len(password)<20:raise ValueError('解鎖密碼至少需 20 個字元')
+    if len(password)<8:raise ValueError('解鎖密碼至少需 8 個字元')
     raw=a.input.read_bytes();json.loads(raw)
     a.output.write_text(json.dumps(encrypt(raw,password),indent=2))
     print('加密完成；密碼未輸出。只發布 data.enc.json，勿上傳 private 資料夾。')
