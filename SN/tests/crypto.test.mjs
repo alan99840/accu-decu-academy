@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';
+import {webcrypto} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import {root,monitor} from '../scripts/paths.mjs';
+const e=JSON.parse(await fs.readFile(path.join(monitor,'data.enc.json'),'utf8'));
+const password=(await fs.readFile(path.join(root,'private/解鎖密碼.txt'),'utf8')).trim();
+const seed=await webcrypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);
+const key=await webcrypto.subtle.deriveKey({name:'PBKDF2',salt:Buffer.from(e.salt,'base64'),iterations:e.iterations,hash:'SHA-256'},seed,{name:'AES-GCM',length:256},false,['decrypt']);
+const clear=await webcrypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(e.iv,'base64')},key,Buffer.from(e.ciphertext,'base64'));
+const d=JSON.parse(gunzipSync(Buffer.from(clear)).toString('utf8'));
+assert.deepEqual(d,JSON.parse(await fs.readFile(path.join(root,'private/dataset.json'),'utf8')));
+const tampered=Buffer.from(e.ciphertext,'base64');tampered[0]^=1;
+await assert.rejects(()=>webcrypto.subtle.decrypt({name:'AES-GCM',iv:Buffer.from(e.iv,'base64')},key,tampered));
+console.log('Python 加密與 Web Crypto 解密互通、防竄改檢查通過；未輸出密碼。');
