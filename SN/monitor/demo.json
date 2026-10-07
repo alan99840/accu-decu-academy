@@ -1,0 +1,1826 @@
+{
+  "schemaVersion": 1,
+  "sourceAsOf": "2026-10-06",
+  "generatedAt": "2026-10-07",
+  "asOf": "2026-10-07",
+  "trades": [
+    {
+      "id": "demo-000",
+      "tradeDate": "2026-01-05",
+      "isin": "DEMO-0001",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 2
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-001",
+      "tradeDate": "2026-02-05",
+      "isin": "DEMO-0002",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 3
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-002",
+      "tradeDate": "2026-03-05",
+      "isin": "DEMO-0003",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 4
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-003",
+      "tradeDate": "2026-04-05",
+      "isin": "DEMO-0004",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 5
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-004",
+      "tradeDate": "2026-05-05",
+      "isin": "DEMO-0005",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 6
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-005",
+      "tradeDate": "2026-06-05",
+      "isin": "DEMO-0006",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 7
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-006",
+      "tradeDate": "2026-07-05",
+      "isin": "DEMO-0007",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 8
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-007",
+      "tradeDate": "2026-08-05",
+      "isin": "DEMO-0008",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 9
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-008",
+      "tradeDate": "2026-09-05",
+      "isin": "DEMO-0009",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 10
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-009",
+      "tradeDate": "2026-10-05",
+      "isin": "DEMO-0010",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 11
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-010",
+      "tradeDate": "2026-01-05",
+      "isin": "DEMO-0011",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 12
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-011",
+      "tradeDate": "2026-02-05",
+      "isin": "DEMO-0012",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 13
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-012",
+      "tradeDate": "2026-03-05",
+      "isin": "DEMO-0013",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 14
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-013",
+      "tradeDate": "2026-04-05",
+      "isin": "DEMO-0014",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 15
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-014",
+      "tradeDate": "2026-05-05",
+      "isin": "DEMO-0015",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 16
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-015",
+      "tradeDate": "2026-06-05",
+      "isin": "DEMO-0016",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 17
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-016",
+      "tradeDate": "2026-07-05",
+      "isin": "DEMO-0017",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 18
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-017",
+      "tradeDate": "2026-08-05",
+      "isin": "DEMO-0018",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 19
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-018",
+      "tradeDate": "2026-09-05",
+      "isin": "DEMO-0019",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 20
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-019",
+      "tradeDate": "2026-10-05",
+      "isin": "DEMO-0020",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 21
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-020",
+      "tradeDate": "2026-01-05",
+      "isin": "DEMO-0021",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 22
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-021",
+      "tradeDate": "2026-02-05",
+      "isin": "DEMO-0022",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 23
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-022",
+      "tradeDate": "2026-03-05",
+      "isin": "DEMO-0023",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 24
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-023",
+      "tradeDate": "2026-04-05",
+      "isin": "DEMO-0024",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 25
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-024",
+      "tradeDate": "2026-05-05",
+      "isin": "DEMO-0025",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 26
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-025",
+      "tradeDate": "2026-06-05",
+      "isin": "DEMO-0026",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 27
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-026",
+      "tradeDate": "2026-07-05",
+      "isin": "DEMO-0027",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 28
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-027",
+      "tradeDate": "2026-08-05",
+      "isin": "DEMO-0028",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 29
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-028",
+      "tradeDate": "2026-09-05",
+      "isin": "DEMO-0029",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 30
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-029",
+      "tradeDate": "2026-10-05",
+      "isin": "DEMO-0030",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 31
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-030",
+      "tradeDate": "2025-01-05",
+      "isin": "DEMO-0031",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 32
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-031",
+      "tradeDate": "2025-02-05",
+      "isin": "DEMO-0032",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "USD",
+      "amount": 200000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 33
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-032",
+      "tradeDate": "2025-03-05",
+      "isin": "DEMO-0033",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-01",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 300000,
+      "amountRaw": "示範",
+      "coupon": 0.12,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-06",
+        "2026-11-06"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 34
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-033",
+      "tradeDate": "2025-04-05",
+      "isin": "DEMO-0034",
+      "issuer": "BNP",
+      "clientCode": "DEMO-02",
+      "productType": "FCN",
+      "currency": "USD",
+      "amount": 400000,
+      "amountRaw": "示範",
+      "coupon": 0.13999999999999999,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-10-23",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 35
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-034",
+      "tradeDate": "2025-05-05",
+      "isin": "DEMO-0035",
+      "issuer": "HSBC",
+      "clientCode": "DEMO-03",
+      "productType": "ELN",
+      "currency": "USD",
+      "amount": 500000,
+      "amountRaw": "示範",
+      "coupon": 0.16,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "在期",
+      "maturityDate": "2026-12-21",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 36
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    },
+    {
+      "id": "demo-035",
+      "tradeDate": "2025-06-05",
+      "isin": "DEMO-0036",
+      "issuer": "BNP",
+      "clientCode": "DEMO-04",
+      "productType": "DRAN",
+      "currency": "JPY",
+      "amount": 10000000,
+      "amountRaw": "示範",
+      "coupon": 0.18,
+      "ko": 1.0,
+      "koRaw": 100,
+      "ki": 0.65,
+      "strike": 0.75,
+      "tenorMonths": 6,
+      "status": "到期贖回",
+      "maturityDate": "2027-02-15",
+      "observationDates": [
+        "2026-10-15",
+        "2026-11-16"
+      ],
+      "underlyings": [
+        {
+          "raw": "NVDA UQ",
+          "symbol": "NVDA",
+          "initial": 100
+        },
+        {
+          "raw": "TSM UN",
+          "symbol": "TSM",
+          "initial": 100
+        }
+      ],
+      "source": {
+        "sheet": "虛構示範",
+        "row": 37
+      },
+      "issues": [],
+      "rule": {
+        "verified": true,
+        "koEnabled": true,
+        "mode": "離散全數",
+        "comparison": ">=",
+        "scheduleVerified": true,
+        "levelVerified": true,
+        "source": "虛構示範條款",
+        "note": "全部條款及價格均為虛構示範"
+      }
+    }
+  ],
+  "prices": {
+    "NVDA": {
+      "2026-10-06": {
+        "close": 110
+      }
+    },
+    "TSM": {
+      "2026-10-06": {
+        "close": 105
+      }
+    }
+  },
+  "expectedPriceDate": "2026-10-06",
+  "priceSource": "虛構示範行情",
+  "priceCheckedAt": "2026-10-07",
+  "tradingDays": [
+    "2026-10-06"
+  ]
+}
