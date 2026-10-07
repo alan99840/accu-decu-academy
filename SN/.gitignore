@@ -1,0 +1,7 @@
+private/
+outputs/
+node_modules/
+__pycache__/
+*.xlsb
+*.xlsx
+.DS_Store
