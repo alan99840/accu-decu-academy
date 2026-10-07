@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="从零理解 Accumulator 与 Decumulator：用交互模拟器学习每日股数、KO/KI、股票与现金结算、保证金，以及 Note 与 OTC 的区别。">
-  <title>Accu / Decu Academy — 结构性产品入门</title>
+  <meta name="description" content="從零理解 Accumulator 與 Decumulator：用互動模擬器學習每日股數、KO/KI、股票與現金結算、保證金，以及 Note 與 OTC 的區別。">
+  <title>Accu/Decu_Intro — 結構型商品入門</title>
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iI2ZmZmZmZiIvPjxwYXRoIGQ9Ik0xMiA0OCAyMyAxNmg3bDEwIDMyaC04bC0yLTdIMjBsLTIgN3ptMTAtMTRoNmwtMy0xMnoiIGZpbGw9IiNjMDAwMDAiLz48cGF0aCBkPSJtNDAgNDUgOS0yOGg1bC05IDI4eiIgZmlsbD0iIzAwNzE2NyIvPjwvc3ZnPgo=" type="image/svg+xml">
   <style>
 :root{color-scheme:light;--bg:#ffffff;--panel:#f5f8f7;--panel-deep:#ffffff;--text:#253c37;--muted:#5c706a;--faint:#6a7c76;--line:#d7e3de;--brand-red:#c00000;--brand-green:#007167;--green:#007167;--red:#b4232c;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
@@ -17,7 +17,6 @@
 @media(max-width:600px){body{font-size:14px;line-height:1.8}.topbar{padding:0 16px;height:58px}.reading-progress{top:57px}.sidebar{top:58px}.brand{font-size:8px;gap:8px;letter-spacing:1px}.brand-sub{letter-spacing:3px}.brand-mark{width:35px;height:29px;font-size:17px}.topbar-actions{gap:18px}.topbar-actions .terminal-link{display:none}#print-button{font-size:10px}.menu-button{font-size:11px}main{padding:0 18px}html{scroll-padding-top:78px}.hero{padding-top:32px}.hero>.eyebrow{gap:10px;font-size:9px}.eyebrow-block{font-size:8px}h1{color:#00534b;font-size:36px;letter-spacing:-1.4px;margin-top:22px}h1 span{font-size:25px;letter-spacing:-1px;margin-top:9px}.hero-deck{font-size:13px;line-height:1.9;margin-top:22px}.hero-bottom{gap:13px 18px;margin-top:25px}.primary-button{gap:33px;padding:10px 15px;font-size:11px}.hero-bottom .text-button{font-size:10px}.hero-meta{flex-basis:100%;font-size:9px;margin-top:4px}.report-strip{margin-top:25px;gap:7px 18px;font-size:9px}.report-strip>span{flex-basis:calc(50% - 10px)}.report-strip b{margin-right:6px}.lesson{padding:32px 0}.section-heading{gap:12px;margin-bottom:18px}.section-number{font-size:18px;width:33px;padding-top:6px}.section-heading .eyebrow{font-size:8px;letter-spacing:1px}h2{font-size:23px;letter-spacing:-.5px}.section-intro{font-size:13px;margin-bottom:20px}.product-pair{grid-template-columns:1fr;gap:14px}.product-card{padding:18px}.product-card-top{margin-bottom:14px}.product-card h3{font-size:20px}.product-card em{display:inline}.product-card p{font-size:12px}.mini-flow{margin-top:17px;padding-top:12px}.teaching-note{grid-template-columns:1fr;gap:7px;margin-top:20px;padding-top:15px}.teaching-note p{font-size:12px}.note-label{font-size:10px}.explain summary{font-size:12px;padding:13px}.explain>div{padding:13px;font-size:12px}table{font-size:11px;min-width:470px}caption{font-size:10px;padding:10px 12px}th,td{padding:11px 12px}thead th{font-size:10px}.example-grid{grid-template-columns:1fr;gap:22px;margin-top:22px}.worked-example h3{font-size:15px}.worked-example p{font-size:12px}.worked-example{padding-left:13px}.live-label{font-size:9px}.simulation-section h2{font-size:21px}.simulation-section .section-heading{gap:10px}.sim-controls{padding:14px;gap:14px 10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sim-controls select{font-size:10px;padding-left:7px;min-height:38px}.segmented{height:38px}.segmented button{font-size:10px;padding:0 3px}.segmented button span{font-size:8px;display:block;margin:2px 0 0}.sim-controls label,.sim-controls legend{font-size:9px}.sim-terms{padding:12px 14px;gap:7px 17px;font-size:9px}.chart-header{padding:17px 12px 0;font-size:9px;align-items:flex-start;flex-wrap:wrap;gap:9px}.chart-legend{gap:12px;font-size:8px}.chart-unit{font-size:7px}.chart-container{padding:0 3px}.quantity-heading{padding-top:2px}.chart-note{font-size:8px}.day-inspector{padding:12px 14px;gap:7px 16px}.day-inspector label{font-size:9px}.day-inspector input{width:calc(100% - 127px);flex:1;min-width:100px}.day-inspector #day-detail{flex-basis:100%;font-size:10px}.sim-stats{grid-template-columns:1fr 1fr;padding:17px 14px;gap:18px 12px}.sim-stats>div+div{padding-left:13px}.sim-stats>div:nth-child(3){grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:15px;display:grid;grid-template-columns:1fr 1fr;gap:5px 13px;align-items:center}.sim-stats>div:nth-child(3) strong{grid-row:1/3;grid-column:2;margin:0;text-align:right}.sim-stats>div:nth-child(3) small{grid-column:1}.sim-stats strong{font-size:22px;letter-spacing:-.6px}.sim-stats span{font-size:9px}.sim-stats small{font-size:8px}.sim-status{padding:13px 14px;font-size:11px}.path-lesson{padding:13px 14px;font-size:11px}.sim-table summary{padding:12px 14px;font-size:10px}.sim-table summary span{font-size:7px;letter-spacing:-.2px}.sim-table td,.sim-table th{padding:9px 14px;font-size:10px}.sim-table table{min-width:445px}.settlement-batches{padding:14px;grid-template-columns:1fr;font-size:10px;gap:14px}.sim-assumptions{padding:12px 14px;font-size:9px}.below-note{font-size:10px}.mechanism-grid{grid-template-columns:1fr;gap:21px}.mechanism-grid article{display:grid;grid-template-columns:42px 1fr;gap:0 15px;padding-top:18px}.mechanism-code{grid-row:1/4;font-size:25px;margin-bottom:0;margin-top:3px}.mechanism-grid h3{font-size:14px;margin-bottom:8px}.mechanism-grid p{font-size:12px;grid-column:2}.comparison-panel h3{font-size:15px}.rule-timeline{gap:13px;padding:13px 12px;font-size:10px}.rule-timeline b{margin-left:4px}.flow-days{grid-template-columns:1fr 1fr;gap:20px}.flow-days b{font-size:17px}.worked-flow{padding:16px}.flow-result strong{font-size:18px}.flow-result>span{font-size:10px}.formula-block{padding:17px}.formula-block p{gap:12px;display:grid;grid-template-columns:1fr 1fr}.formula-block code{font-size:13px;margin:0;white-space:nowrap}.formula-block small{font-size:10px}.exposure-calculation{display:grid;grid-template-columns:1fr 12px 1fr;gap:15px;padding:18px}.exposure-calculation>i:nth-child(4){display:none}.exposure-calculation>i:nth-child(8){grid-column:1/-1;text-align:center}.exposure-total{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:13px}.exposure-calculation b{font-size:23px}.warning-box{padding:15px}.warning-box h3{font-size:14px}.warning-box p{font-size:12px}.risk-columns{grid-template-columns:1fr;gap:26px}.risk-columns h3{font-size:15px}.risk-columns ul{font-size:12px}.classification{grid-template-columns:1fr}.classification>div{padding:15px}.classification>div+div{border-left:0;border-top:1px solid var(--line)}.classification span{margin-bottom:6px}.table-title{font-size:15px}.wrapper-table{min-width:590px}.term-checklist label{gap:13px;padding:15px 1px}.term-checklist b{font-size:12px}.term-checklist small{font-size:10px}.term-checklist input{width:16px;height:16px}.checklist-footer{font-size:10px}.checklist-footer button{font-size:10px}.appendix h2{font-size:22px}.glossary-grid{gap:0 18px}.glossary-grid b{font-size:10px;line-height:1.8}.glossary-grid p{font-size:10px}.quiz-grid{grid-template-columns:1fr;gap:25px}.quiz legend{min-height:0;font-size:12px;margin-bottom:12px}.quiz button{min-height:0;padding:12px}.quiz-feedback{min-height:0;font-size:11px}.source-list{padding-left:18px}.source-list li{font-size:10px;padding-left:5px}.source-list p{font-size:10px}.site-footer{grid-template-columns:1fr;gap:25px;padding:32px 0}.site-footer h2{font-size:23px}.site-footer h2 br{display:none}.footer-details p{font-size:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 @media print{:root{color-scheme:light;--bg:#fff;--panel:#f5f5f5;--panel-deep:#fff;--text:#111;--muted:#444;--faint:#555;--line:#ccc;--brand-red:#a64800;--brand-green:#245d83;--green:#206243;--red:#a6232a}body{font-size:11px;background:white}.topbar,.sidebar,.reading-progress,.hero-bottom,.live-label,.sim-controls,.day-inspector,.quiz-grid,.checklist-footer,.footer-links{display:none!important}.layout{display:block}main{padding:0}.hero{padding-top:0}h1{color:#00534b;font-size:35px}h1 span{font-size:23px}.lesson{padding:25px 0}h2{font-size:22px}.section-intro{font-size:11px}.product-card,.worked-flow,.simulator,.comparison-panel,.warning-box{break-inside:avoid}.table-wrap{overflow:visible}table{min-width:0!important;font-size:10px}th,td{padding:8px}.explain>div{display:block!important}.explain summary{border-bottom:1px solid var(--line)}.explain summary::after{display:none}.sim-table{display:none}.chart-container svg{max-height:230px}.sim-stats strong{font-size:22px}.sim-status,.path-lesson,.warning-box,.eyebrow-block{background:#f5f8f7}.term-checklist input{appearance:auto}.product-card p,.mechanism-grid p,.risk-columns ul,.teaching-note p{font-size:11px}.source-list a{font-size:10px}.site-footer{padding-bottom:0}.brand-mark{background:#ddd;color:#111}.below-note,.sim-assumptions{font-size:9px}@page{margin:15mm}}
-
 
 /* White report theme, using the source deck palette: CTBC green 007167 and red C00000. */
 .report-strip{background:#f5f9f7;padding:15px 16px;border-bottom:1px solid var(--line)}
@@ -43,159 +42,160 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
 .chart-container svg text{font-family:var(--sans);font-weight:500}table{font-weight:500}
 @media(max-width:600px){body{font-size:15px;line-height:1.9}h1{letter-spacing:-1px}h1 span{font-size:25px;letter-spacing:-.5px}.hero-deck{font-size:15px}.section-intro{font-size:14px}.product-card p,.teaching-note p,.worked-example p,.mechanism-grid p,.warning-box p,.risk-columns ul{font-size:14px}.nav-item{font-size:14px}.sim-controls select,.segmented button{font-size:11px}.chart-legend{font-size:9px}}
 @media print{body{font-size:11px;font-weight:400}.hero-deck,.section-intro,.product-card p,.teaching-note p,.worked-example p,.mechanism-grid p,.warning-box p,.risk-columns ul{font-size:11px}}
+
 </style>
 
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到教学内容</a>
+  <a class="skip-link" href="#main">跳到教學內容</a>
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="Accu Decu Academy 首页"><span class="brand-mark">A/D</span><span>STRUCTURED PRODUCTS<span class="brand-sub">ACADEMY</span></span></a>
-    <div class="topbar-actions"><a href="#simulator" class="terminal-link">打开模拟器 <span aria-hidden="true">↗</span></a><a href="#open-source" class="source-link">MIT 开源</a><button type="button" id="print-button" class="icon-button" aria-label="打印或保存教学为 PDF">打印 <span aria-hidden="true">↗</span></button><button type="button" id="menu-button" class="icon-button menu-button" aria-expanded="false" aria-controls="course-nav">目录 <span aria-hidden="true">☰</span></button></div>
+    <a class="brand" href="#top" aria-label="Accu/Decu_Intro 首頁"><span class="brand-mark">A/D</span><span>Accu/Decu_Intro</span></a>
+    <div class="topbar-actions"><a href="#simulator" class="terminal-link">開啟模擬器 <span aria-hidden="true">↗</span></a><a href="#open-source" class="source-link">MIT 開源</a><button type="button" id="print-button" class="icon-button" aria-label="列印或儲存教學為 PDF">列印 <span aria-hidden="true">↗</span></button><button type="button" id="menu-button" class="icon-button menu-button" aria-expanded="false" aria-controls="course-nav">目錄 <span aria-hidden="true">☰</span></button></div>
   </header>
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
   <div class="layout">
-    <aside id="course-nav" class="sidebar" aria-label="课程目录">
+    <aside id="course-nav" class="sidebar" aria-label="課程目錄">
       <div class="sidebar-label">COURSE INDEX <span>01—08</span></div>
       <nav>
-        <a href="#concept" class="nav-item"><span>01</span>先理解买卖义务</a>
-        <a href="#rules" class="nav-item"><span>02</span>两种产品的规则</a>
-        <a href="#simulator" class="nav-item"><span>03</span>每天买／卖多少股？</a>
-        <a href="#barriers" class="nav-item"><span>04</span>KO、KI 与保证期</a>
-        <a href="#settlement" class="nav-item"><span>05</span>股票还是现金结算</a>
-        <a href="#funding" class="nav-item"><span>06</span>保证金与真实风险</a>
-        <a href="#wrapper" class="nav-item"><span>07</span>Note 与 OTC</a>
-        <a href="#terms" class="nav-item"><span>08</span>学会读 Term Sheet</a>
+        <a href="#concept" class="nav-item"><span>01</span>先理解買賣義務</a>
+        <a href="#rules" class="nav-item"><span>02</span>兩種產品的規則</a>
+        <a href="#simulator" class="nav-item"><span>03</span>每天買／賣多少股？</a>
+        <a href="#barriers" class="nav-item"><span>04</span>KO、KI 與保證期</a>
+        <a href="#settlement" class="nav-item"><span>05</span>股票還是現金結算</a>
+        <a href="#funding" class="nav-item"><span>06</span>保證金與真實風險</a>
+        <a href="#wrapper" class="nav-item"><span>07</span>Note 與 OTC</a>
+        <a href="#terms" class="nav-item"><span>08</span>學會讀 Term Sheet</a>
       </nav>
-      <div class="sidebar-secondary"><a href="#glossary">术语速查</a><a href="#knowledge-check">课堂小测</a><a href="#sources">资料来源</a></div>
-      <div class="sidebar-note"><span class="status-dot"></span> 教学示例 / 非实时行情<br><span class="mono">EQUITY · HKD · 10 DAYS</span></div>
+      <div class="sidebar-secondary"><a href="#glossary">術語速查</a><a href="#knowledge-check">課堂小測</a><a href="#sources">資料來源</a></div>
+      <div class="sidebar-note"><span class="status-dot"></span> 教學示例 / 非即時行情<br><span class="mono">EQUITY · HKD · 10 DAYS</span></div>
     </aside>
     <main id="main">
       <section class="hero" id="top">
-        <div class="eyebrow"><span class="eyebrow-block">LEARNING NOTE 001</span><span>股票挂钩产品 · 入门课程</span></div>
-        <h1>看懂 Accu / Decu<span>从每天的买卖义务开始。</span></h1>
-        <p class="hero-deck">把你当作刚入学的金融学生。先理解每一天要做什么，再看敲出、交割、资金和法律形式。每个概念，都可以在下面的模拟器里找到对应。</p>
-        <div class="hero-bottom"><a href="#concept" class="primary-button">开始学习 <span aria-hidden="true">↓</span></a><a href="#simulator" class="text-button">直接试一条股价路径 <span aria-hidden="true">↗</span></a><span class="hero-meta">08 节课 <i></i> 01 个交互实验</span></div>
-        <div class="report-strip"><span><b>标的</b> 假设股票</span><span><b>期初股价</b> <span class="mono">HK$ 100</span></span><span><b>口径</b> 客户视角</span><span><b>用途</b> 产品机制教学</span></div>
+        <div class="eyebrow"><span class="eyebrow-block">LEARNING NOTE 001</span><span>股票連結型商品 · 入門課程</span></div>
+        <h1>看懂 Accu / Decu<span>從每天的買賣義務開始。</span></h1>
+        <p class="hero-deck">把你當作剛入學的金融學生。先理解每一天要做什麼，再看敲出、交割、資金和法律形式。每個概念，都可以在下面的模擬器裡找到對應。</p>
+        <div class="hero-bottom"><a href="#concept" class="primary-button">開始學習 <span aria-hidden="true">↓</span></a><a href="#simulator" class="text-button">直接試一條股價路徑 <span aria-hidden="true">↗</span></a><span class="hero-meta">08 節課 <i></i> 01 個互動實驗</span></div>
+        <div class="report-strip"><span><b>標的</b> 假設股票</span><span><b>期初股價</b> <span class="mono">HK$ 100</span></span><span><b>口徑</b> 客戶視角</span><span><b>用途</b> 商品機制教學</span></div>
       </section>
 
       <section class="lesson" id="concept">
-        <div class="section-heading"><span class="section-number">01</span><div><div class="eyebrow">THE BASIC IDEA</div><h2>先记住两句话</h2></div></div>
+        <div class="section-heading"><span class="section-number">01</span><div><div class="eyebrow">THE BASIC IDEA</div><h2>先記住兩句話</h2></div></div>
         <div class="product-pair">
-          <article class="product-card"><div class="product-card-top"><span class="product-tag">ACCU</span><span class="mono">Accumulator</span></div><h3>按约定价格，<em>持续买股。</em></h3><p>签约时，执行价通常低于当时的股价。代价是：价格对你不利时，你仍要买，可能还要买更多。</p><div class="mini-flow"><span>客户支付价款</span><b>→</b><span>取得股票</span></div></article>
-          <article class="product-card"><div class="product-card-top"><span class="product-tag decu">DECU</span><span class="mono">Decumulator</span></div><h3>按约定价格，<em>持续卖股。</em></h3><p>签约时，执行价通常高于当时的股价。代价是：股票涨得更高，你仍要卖，可能还要卖更多。</p><div class="mini-flow"><span>客户交付股票</span><b>→</b><span>取得价款</span></div></article>
+          <article class="product-card"><div class="product-card-top"><span class="product-tag">ACCU</span><span class="mono">Accumulator</span></div><h3>按約定價格，<em>持續買股。</em></h3><p>簽約時，執行價通常低於當時的股價。代價是：價格對你不利時，你仍要買，可能還要買更多。</p><div class="mini-flow"><span>客戶支付價款</span><b>→</b><span>取得股票</span></div></article>
+          <article class="product-card"><div class="product-card-top"><span class="product-tag decu">DECU</span><span class="mono">Decumulator</span></div><h3>按約定價格，<em>持續賣股。</em></h3><p>簽約時，執行價通常高於當時的股價。代價是：股票漲得更高，你仍要賣，可能還要賣更多。</p><div class="mini-flow"><span>客戶交付股票</span><b>→</b><span>取得價款</span></div></article>
         </div>
-        <div class="teaching-note"><span class="note-label">老师提醒</span><p>这是带有条件的<strong>买卖义务</strong>。报价中的“折价买入”或“溢价卖出”，是相对<strong>签约时的股价</strong>而言；未来的市场价可能比你的买价更低，或比你的卖价更高。普通 Accu / Decu 也不能直接理解为“本金加票息”。<a class="citation" href="#source-cfa">[1]</a></p></div>
-        <details class="explain"><summary>为什么银行愿意给一个看起来更好的价格？</summary><div><p>你取得更有利的执行价，同时承担某些不利情境下的履约义务。一个简化的期权理解是：Accu 接近一系列<strong>买入看涨、卖出看跌</strong>的组合；Decu 则接近<strong>买入看跌、卖出看涨</strong>。数量倍数、障碍价与保证期会进一步改变收益结构。</p><p>价格优势来自风险交换。不能只看“比今天便宜 10%”，还要看你最不愿意买／卖的时候，需要履行多大义务。</p></div></details>
+        <div class="teaching-note"><span class="note-label">老師提醒</span><p>這是帶有條件的<strong>買賣義務</strong>。報價中的“折價買入”或“溢價賣出”，是相對<strong>簽約時的股價</strong>而言；未來的市場價可能比你的買價更低，或比你的賣價更高。普通 Accu / Decu 也不能直接理解為“本金加票息”。<a class="citation" href="#source-cfa">[1]</a></p></div>
+        <details class="explain"><summary>為什麼銀行願意給一個看起來更好的價格？</summary><div><p>你取得更有利的執行價，同時承擔某些不利情境下的履約義務。一個簡化的期權理解是：Accu 接近一系列<strong>買入看漲、賣出看跌</strong>的組合；Decu 則接近<strong>買入看跌、賣出看漲</strong>。數量倍數、障礙價與保證期會進一步改變收益結構。</p><p>價格優勢來自風險交換。不能只看“比今天便宜 10%”，還要看你最不願意買／賣的時候，需要履行多大義務。</p></div></details>
       </section>
 
       <section class="lesson" id="rules">
-        <div class="section-heading"><span class="section-number">02</span><div><div class="eyebrow">DAILY OBLIGATION</div><h2>观察股价，决定当天股数</h2></div></div>
-        <p class="section-intro">下面是一组教学条款。市场上可以有 1x、无 KO、不同保证期或其他变体；产品名称本身不能确定这些规则。</p>
-        <div class="table-wrap"><table><caption>共同期初价 HK$ 100；正常每日 100 股；不利情境每日 200 股</caption><thead><tr><th>条款</th><th><span class="brand-red">Accu · 买股</span></th><th><span class="brand-green">Decu · 卖股</span></th></tr></thead><tbody><tr><th>执行价 K</th><td class="mono">HK$ 90</td><td class="mono">HK$ 110</td></tr><tr><th>正常数量 1x</th><td>90 ≤ 股价 &lt; 105：买 100 股</td><td>95 &lt; 股价 ≤ 110：卖 100 股</td></tr><tr><th>不利时数量 2x</th><td>股价 &lt; 90：买 200 股</td><td>股价 &gt; 110：卖 200 股</td></tr><tr><th>敲出 KO</th><td>股价 ≥ 105：停止后续计量</td><td>股价 ≤ 95：停止后续计量</td></tr><tr><th>每天成交价格</th><td>始终按 90 买入</td><td>始终按 110 卖出</td></tr></tbody></table></div>
-        <div class="example-grid"><article class="worked-example"><span class="small-label">ACCU / 股价跌到 85</span><h3>买 200 股，支付 <span class="mono brand-red">18,000</span></h3><p>市场价值 = 200 × 85 = 17,000 港元。按执行价支付 18,000 港元，买入股票当时的浮亏为 <strong class="negative">1,000 港元</strong>。</p></article><article class="worked-example"><span class="small-label">DECU / 股价涨到 130</span><h3>卖 200 股，收到 <span class="mono brand-green">22,000</span></h3><p>按市场价卖出原可收到 26,000 港元。你按 110 卖出，较市场价少收 <strong class="negative">4,000 港元</strong>；这和原持股的实际盈亏是两件事。</p></article></div>
+        <div class="section-heading"><span class="section-number">02</span><div><div class="eyebrow">DAILY OBLIGATION</div><h2>觀察股價，決定當天股數</h2></div></div>
+        <p class="section-intro">下面是一組教學條款。市場上可以有 1x、無 KO、不同保證期或其他變體；產品名稱本身不能確定這些規則。</p>
+        <div class="table-wrap"><table><caption>共同期初價 HK$ 100；正常每日 100 股；不利情境每日 200 股</caption><thead><tr><th>條款</th><th><span class="brand-red">Accu · 買股</span></th><th><span class="brand-green">Decu · 賣股</span></th></tr></thead><tbody><tr><th>執行價 K</th><td class="mono">HK$ 90</td><td class="mono">HK$ 110</td></tr><tr><th>正常數量 1x</th><td>90 ≤ 股價 &lt; 105：買 100 股</td><td>95 &lt; 股價 ≤ 110：賣 100 股</td></tr><tr><th>不利時數量 2x</th><td>股價 &lt; 90：買 200 股</td><td>股價 &gt; 110：賣 200 股</td></tr><tr><th>敲出 KO</th><td>股價 ≥ 105：停止後續計量</td><td>股價 ≤ 95：停止後續計量</td></tr><tr><th>每天成交價格</th><td>始終按 90 買入</td><td>始終按 110 賣出</td></tr></tbody></table></div>
+        <div class="example-grid"><article class="worked-example"><span class="small-label">ACCU / 股價跌到 85</span><h3>買 200 股，支付 <span class="mono brand-red">18,000</span></h3><p>市場價值 = 200 × 85 = 17,000 港元。按執行價支付 18,000 港元，買入股票當時的浮虧為 <strong class="negative">1,000 港元</strong>。</p></article><article class="worked-example"><span class="small-label">DECU / 股價漲到 130</span><h3>賣 200 股，收到 <span class="mono brand-green">22,000</span></h3><p>按市場價賣出原可收到 26,000 港元。你按 110 賣出，較市場價少收 <strong class="negative">4,000 港元</strong>；這和原持股的實際盈虧是兩件事。</p></article></div>
       </section>
 
       <section class="lesson simulation-section" id="simulator">
-        <div class="section-heading"><span class="section-number">03</span><div><div class="eyebrow">INTERACTIVE LAB</div><h2>每天买／卖多少股？</h2></div><span class="live-label"><span class="status-dot"></span> 可交互</span></div>
-        <p class="section-intro">切换产品和股价情境，看“价格 → 股数 → 交割 → 结果”如何连起来。试试同终价 A / B：终点相同，沿途义务可以不同。</p>
-        <noscript><div class="warning-box">模拟器需要 JavaScript。请开启浏览器 JavaScript；下方全部教学文字仍可阅读。</div></noscript>
+        <div class="section-heading"><span class="section-number">03</span><div><div class="eyebrow">INTERACTIVE LAB</div><h2>每天買／賣多少股？</h2></div><span class="live-label"><span class="status-dot"></span> 可互動</span></div>
+        <p class="section-intro">切換產品和股價情境，看“價格 → 股數 → 交割 → 結果”如何連起來。試試同終價 A / B：終點相同，沿途義務可以不同。</p>
+        <noscript><div class="warning-box">模擬器需要 JavaScript。請開啟瀏覽器 JavaScript；下方全部教學文字仍可閱讀。</div></noscript>
         <div id="accu-decu-classroom" class="simulator">
           <div class="sim-controls">
-            <fieldset class="product-switch"><legend>选择产品</legend><div class="segmented"><button type="button" data-product="accu" class="selected" aria-pressed="true">ACCU <span>买股</span></button><button type="button" data-product="decu" aria-pressed="false">DECU <span>卖股</span></button></div></fieldset>
-            <label>股价情境<select id="scenario"><option value="range">区间波动</option><option value="adverse">持续不利走势</option><option value="ko">提前 KO</option><option value="rebound">不利后回升／回落</option><option value="same-a">同终价 A · 一直 100</option><option value="same-b">同终价 B · 中途越过执行价</option></select></label>
-            <label>数量倍数<select id="gearing"><option value="2">正常 1x / 不利 2x</option><option value="1">始终 1x</option></select></label>
-            <label>结算假设<select id="settlement-mode"><option value="physical">股票实物交割</option><option value="cash">逐日定价的现金差额</option></select></label>
+            <fieldset class="product-switch"><legend>選擇產品</legend><div class="segmented"><button type="button" data-product="accu" class="selected" aria-pressed="true">ACCU <span>買股</span></button><button type="button" data-product="decu" aria-pressed="false">DECU <span>賣股</span></button></div></fieldset>
+            <label>股價情境<select id="scenario"><option value="range">區間波動</option><option value="adverse">持續不利走勢</option><option value="ko">提前 KO</option><option value="rebound">不利後回升／回落</option><option value="same-a">同終價 A · 一直 100</option><option value="same-b">同終價 B · 中途越過執行價</option></select></label>
+            <label>數量倍數<select id="gearing"><option value="2">正常 1x / 不利 2x</option><option value="1">始終 1x</option></select></label>
+            <label>結算假設<select id="settlement-mode"><option value="physical">股票實物交割</option><option value="cash">逐日定價的現金差額</option></select></label>
           </div>
           <div class="sim-terms" id="sim-terms"></div>
-          <div class="chart-header"><span>01 / 股价路径 <span class="chart-unit">HKD</span></span><div class="chart-legend"><span><i class="legend-line brand-red-line"></i>股价</span><span><i class="legend-line brand-green-line"></i>执行价</span><span><i class="legend-line dotted-line"></i>KO</span></div></div>
-          <div class="chart-container"><svg id="price-chart" role="img" aria-label="股价路径"></svg></div>
-          <div class="chart-header quantity-heading"><span id="quantity-chart-title">02 / 每日买入股数 <span class="chart-unit">SHARES</span></span><span class="chart-note">浅色 1x · 实色 2x · KO 后 0 股</span></div>
-          <div class="chart-container"><svg id="quantity-chart" role="img" aria-label="每日股数"></svg></div>
-          <div class="day-inspector"><label for="inspect-day">查看观察日 <output id="day-output" for="inspect-day">D01</output></label><input id="inspect-day" type="range" min="1" max="10" value="1" aria-label="查看第几观察日"><div id="day-detail" aria-live="polite"></div></div>
-          <div class="sim-stats" aria-live="polite"><div><span id="quantity-label">累计买股</span><strong id="total-quantity" class="mono"></strong><small id="quantity-description"></small></div><div><span id="cash-label">累计购股价款</span><strong id="total-cash" class="mono"></strong><small id="cash-description"></small></div><div><span id="pnl-label">期末股票浮动损益</span><strong id="total-pnl" class="mono"></strong><small id="pnl-description"></small></div></div>
+          <div class="chart-header"><span>01 / 股價路徑 <span class="chart-unit">HKD</span></span><div class="chart-legend"><span><i class="legend-line brand-red-line"></i>股價</span><span><i class="legend-line brand-green-line"></i>執行價</span><span><i class="legend-line dotted-line"></i>KO</span></div></div>
+          <div class="chart-container"><svg id="price-chart" role="img" aria-label="股價路徑"></svg></div>
+          <div class="chart-header quantity-heading"><span id="quantity-chart-title">02 / 每日買入股數 <span class="chart-unit">SHARES</span></span><span class="chart-note">淺色 1x · 實色 2x · KO 後 0 股</span></div>
+          <div class="chart-container"><svg id="quantity-chart" role="img" aria-label="每日股數"></svg></div>
+          <div class="day-inspector"><label for="inspect-day">檢視觀察日 <output id="day-output" for="inspect-day">D01</output></label><input id="inspect-day" type="range" min="1" max="10" value="1" aria-label="檢視第幾觀察日"><div id="day-detail" aria-live="polite"></div></div>
+          <div class="sim-stats" aria-live="polite"><div><span id="quantity-label">累計買股</span><strong id="total-quantity" class="mono"></strong><small id="quantity-description"></small></div><div><span id="cash-label">累計購股價款</span><strong id="total-cash" class="mono"></strong><small id="cash-description"></small></div><div><span id="pnl-label">期末股票浮動損益</span><strong id="total-pnl" class="mono"></strong><small id="pnl-description"></small></div></div>
           <div id="sim-status" class="sim-status" aria-live="polite"></div>
           <div id="path-lesson" class="path-lesson" hidden></div>
-          <details class="sim-table"><summary>展开逐日明细与交割批次 <span>DAILY LEDGER</span></summary><div class="table-wrap"><table><thead><tr><th>观察日</th><th>股价 HK$</th><th>状态</th><th>股数</th><th id="ledger-cash-heading">约定价款 HK$</th></tr></thead><tbody id="daily-ledger"></tbody><tfoot id="ledger-total"></tfoot></table></div><div id="settlement-batches" class="settlement-batches"></div><button type="button" id="download-csv" class="text-button">下载本情境 CSV <span aria-hidden="true">↓</span></button></details>
-          <div class="sim-assumptions"><b>教学假设</b> 10 个观察日；第 5、10 日交割（KO 不加速原定交割）；收盘观察；KO 当日不计量；执行价等值时按 1x；无 KI、无保证期；忽略费用、股息、融资、税费和信用风险。现金示例按每个观察日的收盘价计算差额，按批次支付。实际产品可能使用不同参考价和日期。</div>
+          <details class="sim-table"><summary>展開逐日明細與交割批次 <span>DAILY LEDGER</span></summary><div class="table-wrap"><table><thead><tr><th>觀察日</th><th>股價 HK$</th><th>狀態</th><th>股數</th><th id="ledger-cash-heading">約定價款 HK$</th></tr></thead><tbody id="daily-ledger"></tbody><tfoot id="ledger-total"></tfoot></table></div><div id="settlement-batches" class="settlement-batches"></div><button type="button" id="download-csv" class="text-button">下載本情境 CSV <span aria-hidden="true">↓</span></button></details>
+          <div class="sim-assumptions"><b>教學假設</b> 10 個觀察日；第 5、10 日交割（KO 不加速原定交割）；收盤觀察；KO 當日不計量；執行價等值時按 1x；無 KI、無保證期；忽略費用、股利、融資、稅費和信用風險。現金示例按每個觀察日的收盤價計算差額，按批次支付。實際產品可能使用不同參考價和日期。</div>
         </div>
-        <p class="below-note">模拟中的买卖义务用固定条款计算。“结算假设”用于解释不同现金流，不代表客户可以自行选择合同的结算方式。</p>
+        <p class="below-note">模擬中的買賣義務用固定條款計算。“結算假設”用於解釋不同現金流，不代表客戶可以自行選擇合約的結算方式。</p>
       </section>
 
       <section class="lesson" id="barriers">
-        <div class="section-heading"><span class="section-number">04</span><div><div class="eyebrow">BARRIERS & GUARANTEED PERIOD</div><h2>KO、KI、保证期：分别改变什么？</h2></div></div>
-        <div class="mechanism-grid"><article><span class="mechanism-code brand-red">KO</span><h3>Knock-out / 敲出</h3><p><strong>结束合同规定的后续部分。</strong>典型 Accu 在上涨时 KO，典型 Decu 在下跌时 KO。它通常在有利方向触发，不能当作不利方向的止损线。</p><p>此前已经累计的买卖义务，通常仍须履行；Accu 已取得的股票继续随市价涨跌。</p></article><article><span class="mechanism-code brand-green">KI</span><h3>Knock-in / 敲入</h3><p><strong>激活条款指定的规则。</strong>可能是开始承担义务、启动倍数，或改变另一项条件。只有合同明确列明，才有 KI。</p><p>每日跌破／涨过执行价就加倍，可以只是当天的数量规则，不必然是 KI。</p></article><article><span class="mechanism-code">GP</span><h3>Guaranteed period / 保证期</h3><p><strong>保证某段期间或某个数量的义务。</strong>有些结构提早 KO 后，仍要完成最低买卖数量。另有结构在最初一段期间不观察 KO。</p><p>保证的是义务或数量，不是盈利，也不是本金。</p></article></div>
-        <div class="teaching-note"><span class="note-label">先读观察规则</span><p>KO 价是 105：某天盘中到过 106，收盘却是 103。如果按盘中连续观察，可能已经 KO；如果只看每日收盘，可能没有 KO。还要核对“达到”还是“超过”、KO 当日计不计量，以及保证期如何处理。<a class="citation" href="#source-dbs">[2]</a></p></div>
-        <div class="comparison-panel"><h3>“当天 2x”与“敲入后一直 2x”，结果不同</h3><div class="rule-timeline"><span>股价 <b class="mono">100</b></span><i>→</i><span>跌到 <b class="mono negative">75</b></span><i>→</i><span>回到 <b class="mono">100</b></span></div><div class="table-wrap"><table><thead><tr><th>假设 Accu 规则</th><th>第一天</th><th>第二天</th><th>第三天</th></tr></thead><tbody><tr><th>每日判断：低于 K=90 就 2x</th><td>100 股</td><td>200 股</td><td>100 股</td></tr><tr><th>假设 KI=80：敲入后永久 2x</th><td>100 股</td><td>200 股</td><td>200 股</td></tr></tbody></table></div><p class="below-note">第二行仅用于解释“触发后锁定”的概念，并非所有 Accu 的通用条款。观察方式也可分为连续／每日观察或到期观察；“美式／欧式”在这里描述观察方式，不是市场所在地。<a class="citation" href="#source-dahsing">[4]</a></p></div>
-        <details class="explain"><summary>保证期碰上 KO，会发生什么？</summary><div><p>假设合同明确保证前 20 天每天 100 股，即使第 3 天 KO，仍可能要完成这段期间规定的最低数量。至于是继续每天累计，还是 KO 时一次补足，补足部分用 1x 还是 2x，须看具体公式。</p><p>“有保证数量”与“最初不观察 KO”是不同设计。不要把两者混为一谈。</p></div></details>
-        <details class="explain"><summary>报价里还可能出现哪些变体？</summary><div><p><strong>1x 或无 KO：</strong>可以不加倍，或没有价格敲出。<strong>分段执行价／障碍价：</strong>价格可能随时间调整。<strong>目标敲出：</strong>可能按累计数量、约定收益或其他目标终止，其计量公式及最后一期处理需单独核对。</p><p><strong>多标的或篮子：</strong>观察哪只股票、怎样确定数量、交付哪只股票，可能按不同规则处理。还可能附带特定 KI、数量上限或提前终止条件。每一项都会改变现金流，不能从 Accumulator / Decumulator 的名称直接推断。</p></div></details>
+        <div class="section-heading"><span class="section-number">04</span><div><div class="eyebrow">BARRIERS & GUARANTEED PERIOD</div><h2>KO、KI、保證期：分別改變什麼？</h2></div></div>
+        <div class="mechanism-grid"><article><span class="mechanism-code brand-red">KO</span><h3>Knock-out / 敲出</h3><p><strong>結束合約規定的後續部分。</strong>典型 Accu 在上漲時 KO，典型 Decu 在下跌時 KO。它通常在有利方向觸發，不能當作不利方向的止損線。</p><p>此前已經累計的買賣義務，通常仍須履行；Accu 已取得的股票繼續隨市價漲跌。</p></article><article><span class="mechanism-code brand-green">KI</span><h3>Knock-in / 敲入</h3><p><strong>啟用條款指定的規則。</strong>可能是開始承擔義務、啟動倍數，或改變另一項條件。只有合約明確列明，才有 KI。</p><p>每日跌破／漲過執行價就加倍，可以只是當天的數量規則，不必然是 KI。</p></article><article><span class="mechanism-code">GP</span><h3>Guaranteed period / 保證期</h3><p><strong>保證某段期間或某個數量的義務。</strong>有些結構提早 KO 後，仍要完成最低買賣數量。另有結構在最初一段期間不觀察 KO。</p><p>保證的是義務或數量，不是盈利，也不是本金。</p></article></div>
+        <div class="teaching-note"><span class="note-label">先讀觀察規則</span><p>KO 價是 105：某天盤中到過 106，收盤卻是 103。如果按盤中連續觀察，可能已經 KO；如果只看每日收盤，可能沒有 KO。還要核對“達到”還是“超過”、KO 當日計不計量，以及保證期如何處理。<a class="citation" href="#source-dbs">[2]</a></p></div>
+        <div class="comparison-panel"><h3>“當天 2x”與“敲入後一直 2x”，結果不同</h3><div class="rule-timeline"><span>股價 <b class="mono">100</b></span><i>→</i><span>跌到 <b class="mono negative">75</b></span><i>→</i><span>回到 <b class="mono">100</b></span></div><div class="table-wrap"><table><thead><tr><th>假設 Accu 規則</th><th>第一天</th><th>第二天</th><th>第三天</th></tr></thead><tbody><tr><th>每日判斷：低於 K=90 就 2x</th><td>100 股</td><td>200 股</td><td>100 股</td></tr><tr><th>假設 KI=80：敲入後永久 2x</th><td>100 股</td><td>200 股</td><td>200 股</td></tr></tbody></table></div><p class="below-note">第二行僅用於解釋“觸發後鎖定”的概念，並非所有 Accu 的通用條款。觀察方式也可分為連續／每日觀察或到期觀察；“美式／歐式”在這裡描述觀察方式，不是市場所在地。<a class="citation" href="#source-dahsing">[4]</a></p></div>
+        <details class="explain"><summary>保證期碰上 KO，會發生什麼？</summary><div><p>假設合約明確保證前 20 天每天 100 股，即使第 3 天 KO，仍可能要完成這段期間規定的最低數量。至於是繼續每天累計，還是 KO 時一次補足，補足部分用 1x 還是 2x，須看具體公式。</p><p>“有保證數量”與“最初不觀察 KO”是不同設計。不要把兩者混為一談。</p></div></details>
+        <details class="explain"><summary>報價裡還可能出現哪些變體？</summary><div><p><strong>1x 或無 KO：</strong>可以不加倍，或沒有價格敲出。<strong>分段執行價／障礙價：</strong>價格可能隨時間調整。<strong>目標敲出：</strong>可能按累計數量、約定收益或其他目標終止，其計量公式及最後一期處理需單獨核對。</p><p><strong>多標的或籃子：</strong>觀察哪隻股票、怎樣確定數量、交付哪隻股票，可能按不同規則處理。還可能附帶特定 KI、數量上限或提前終止條件。每一項都會改變現金流，不能從 Accumulator / Decumulator 的名稱直接推斷。</p></div></details>
       </section>
 
       <section class="lesson" id="settlement">
-        <div class="section-heading"><span class="section-number">05</span><div><div class="eyebrow">SETTLEMENT & DELIVERY</div><h2>买到的是股票，还是一个现金差额？</h2></div></div>
-        <p class="section-intro">观察日先确定义务，交割日再交换现金和股票。每天累计，不一定每天交割。</p>
-        <div class="table-wrap"><table><thead><tr><th>合同结算方式</th><th>Accu 客户做什么</th><th>Decu 客户做什么</th></tr></thead><tbody><tr><th>实物交割<br><small>Physical settlement</small></th><td>支付约定价款，收到股票</td><td>交付股票，收到约定价款</td></tr><tr><th>现金差额<br><small>Cash settlement</small></th><td>根据合约公式收／付净差额，不取得股票</td><td>根据合约公式收／付净差额，不交付股票</td></tr></tbody></table></div>
-        <div class="worked-flow"><span class="small-label">ACCU 实物示例 / 前四天</span><div class="flow-days"><div><span>D01 · 股价 100</span><b>100 股</b><small>价款 9,000</small></div><div><span>D02 · 股价 95</span><b>100 股</b><small>价款 9,000</small></div><div><span>D03 · 股价 85</span><b>200 股</b><small>价款 18,000</small></div><div><span>D04 · 股价 80</span><b>200 股</b><small>价款 18,000</small></div></div><div class="flow-result"><span>假设第 5 日 KO，不计当日股数；此前义务仍交割</span><strong class="mono">HK$ 54,000 <span>⇄</span> 600 股</strong></div></div>
-        <div class="example-grid"><article class="worked-example"><span class="small-label">同一笔义务 / S=85，K=90，q=200</span><h3>实物：付 18,000，收 200 股</h3><p>股票当时值 17,000，浮亏 1,000。交割后你持有股票，未来股价变化会继续影响你。</p></article><article class="worked-example"><span class="small-label">假设按当天参考价进行现金差额结算</span><h3>现金：净付 1,000，不收股票</h3><p>本次差额 = 200 × (85 − 90) = −1,000。你没有因这笔结算取得股票，所以没有这 200 股的后续持股风险。</p></article></div>
-        <div class="formula-block"><span class="small-label">一个常见的教学口径 / 每个观察日定价</span><p><b class="brand-red">Accu 客户差额</b><code>q × (S − K)</code><b class="brand-green">Decu 客户差额</b><code>q × (K − S)</code></p><small>正数表示客户收款，负数表示客户付款。多日金额按合同汇总；参考价 S 可能是观察日价、批次结算价或其他指定价格。</small></div>
-        <details class="explain"><summary>实物交割后，股息和公司行动如何处理？</summary><div><p>尚未取得股票时，通常不会仅因累计义务就拥有股东权利。交割后的股息资格要看除息日、登记日等规则；合约也可能对股息作特别调整。</p><p>拆股、合并、收购、停牌或退市等事件，可能触发数量／价格调整、替代标的或提前终止。具体由合同和计算代理条款决定。<a class="citation" href="#source-boci">[3]</a></p></div></details>
+        <div class="section-heading"><span class="section-number">05</span><div><div class="eyebrow">SETTLEMENT & DELIVERY</div><h2>買到的是股票，還是一個現金差額？</h2></div></div>
+        <p class="section-intro">觀察日先確定義務，交割日再交換現金和股票。每天累計，不一定每天交割。</p>
+        <div class="table-wrap"><table><thead><tr><th>合約結算方式</th><th>Accu 客戶做什麼</th><th>Decu 客戶做什麼</th></tr></thead><tbody><tr><th>實物交割<br><small>Physical settlement</small></th><td>支付約定價款，收到股票</td><td>交付股票，收到約定價款</td></tr><tr><th>現金差額<br><small>Cash settlement</small></th><td>根據合約公式收／付淨差額，不取得股票</td><td>根據合約公式收／付淨差額，不交付股票</td></tr></tbody></table></div>
+        <div class="worked-flow"><span class="small-label">ACCU 實物示例 / 前四天</span><div class="flow-days"><div><span>D01 · 股價 100</span><b>100 股</b><small>價款 9,000</small></div><div><span>D02 · 股價 95</span><b>100 股</b><small>價款 9,000</small></div><div><span>D03 · 股價 85</span><b>200 股</b><small>價款 18,000</small></div><div><span>D04 · 股價 80</span><b>200 股</b><small>價款 18,000</small></div></div><div class="flow-result"><span>假設第 5 日 KO，不計當日股數；此前義務仍交割</span><strong class="mono">HK$ 54,000 <span>⇄</span> 600 股</strong></div></div>
+        <div class="example-grid"><article class="worked-example"><span class="small-label">同一筆義務 / S=85，K=90，q=200</span><h3>實物：付 18,000，收 200 股</h3><p>股票當時值 17,000，浮虧 1,000。交割後你持有股票，未來股價變化會繼續影響你。</p></article><article class="worked-example"><span class="small-label">假設按當天參考價進行現金差額結算</span><h3>現金：淨付 1,000，不收股票</h3><p>本次差額 = 200 × (85 − 90) = −1,000。你沒有因這筆結算取得股票，所以沒有這 200 股的後續持股風險。</p></article></div>
+        <div class="formula-block"><span class="small-label">一個常見的教學口徑 / 每個觀察日定價</span><p><b class="brand-red">Accu 客戶差額</b><code>q × (S − K)</code><b class="brand-green">Decu 客戶差額</b><code>q × (K − S)</code></p><small>正數表示客戶收款，負數表示客戶付款。多日金額按合約彙總；參考價 S 可能是觀察日價、批次結算價或其他指定價格。</small></div>
+        <details class="explain"><summary>實物交割後，股利和公司行動如何處理？</summary><div><p>尚未取得股票時，通常不會僅因累計義務就擁有股東權利。交割後的股利資格要看除息日、登記日等規則；合約也可能對股利作特別調整。</p><p>拆股、合併、收購、停牌或退市等事件，可能觸發數量／價格調整、替代標的或提前終止。具體由合約和計算代理條款決定。<a class="citation" href="#source-boci">[3]</a></p></div></details>
       </section>
 
       <section class="lesson" id="funding">
-        <div class="section-heading"><span class="section-number">06</span><div><div class="eyebrow">EXPOSURE & FUNDING</div><h2>保证金，不是最大亏损</h2></div></div>
-        <p class="section-intro">数量加倍和保证金融资是两种不同的放大机制。计算风险时，先算最大可能的买卖义务，再看如何筹措资金。</p>
-        <div class="exposure-calculation"><div><span>10 个观察日</span><b class="mono">10</b></div><i>×</i><div><span>正常每天 100 股</span><b class="mono">100</b></div><i>×</i><div><span>最多 2x</span><b class="mono">2</b></div><i>×</i><div><span>执行价 HK$ 90</span><b class="mono">90</b></div><i>=</i><div class="exposure-total"><span>最大购股价款</span><b class="mono brand-red">180,000</b></div></div>
-        <div class="warning-box"><h3>假设初始保证金 30%：54,000 港元</h3><p>这并不把购股义务或亏损限制在 54,000。如果 2,000 股全部按 90 买入，最后股票跌到 0，股票损失可达 <strong>180,000 港元</strong>，尚未计融资和费用。保证金比例在此仅是算术假设，并非实际报价。</p></div>
-        <div class="risk-columns"><article><span class="small-label">ACCU / 资金侧</span><h3>股价下跌可能带来双重压力</h3><ul><li>当天买股数量增加，购股现金需求上升。</li><li>合约市值变差，可能同时被要求追加抵押品。</li><li>交割价款与保证金如何抵扣，要看资金安排；不能自动视为可互换，也不能简单重复相加。</li></ul></article><article><span class="small-label">DECU / 股票侧</span><h3>备兑和不足额交付，风险不同</h3><ul><li><strong>备兑：</strong>持有足够股票，可按约交付；仍可能有未售股票的下跌风险和低于市场价卖出的机会成本。</li><li><strong>股票不足：</strong>可能要高价购股，再按低执行价交付。若无其他保护，股价上涨带来的补购损失理论上没有上限。</li></ul></article></div>
-        <div class="teaching-note"><span class="note-label">实际盈亏 ≠ 机会成本</span><p>原来以 80 买入股票，按 Decu 的 110 卖出，原持股每股赚 30；如果当时市场价是 130，相对市场价每股少收 20。模拟器的 Decu“相对期末卖股的差额”衡量后者，不能当作原持仓利润。</p></div>
-        <details class="explain"><summary>提前平仓为什么不只看已累计的亏损？</summary><div><p>提前终止通常要按剩余合约的市值结算，可能另有价差、手续费或流动性成本。估值还受剩余期限、波动率、利率、股息及信用等因素影响。不能用“已经买了多少股 × 今天价差”代替整个合约的平仓报价。<a class="citation" href="#source-dbs">[2]</a></p><p>此外要核对交易币种、股票币种与资金币种是否一致；货币转换、税费和融资成本可能改变最终结果。</p></div></details>
+        <div class="section-heading"><span class="section-number">06</span><div><div class="eyebrow">EXPOSURE & FUNDING</div><h2>保證金，不是最大虧損</h2></div></div>
+        <p class="section-intro">數量加倍和保證金融資是兩種不同的放大機制。計算風險時，先算最大可能的買賣義務，再看如何籌措資金。</p>
+        <div class="exposure-calculation"><div><span>10 個觀察日</span><b class="mono">10</b></div><i>×</i><div><span>正常每天 100 股</span><b class="mono">100</b></div><i>×</i><div><span>最多 2x</span><b class="mono">2</b></div><i>×</i><div><span>執行價 HK$ 90</span><b class="mono">90</b></div><i>=</i><div class="exposure-total"><span>最大購股價款</span><b class="mono brand-red">180,000</b></div></div>
+        <div class="warning-box"><h3>假設初始保證金 30%：54,000 港元</h3><p>這並不把購股義務或虧損限制在 54,000。如果 2,000 股全部按 90 買入，最後股票跌到 0，股票損失可達 <strong>180,000 港元</strong>，尚未計融資和費用。保證金比例在此僅是算術假設，並非實際報價。</p></div>
+        <div class="risk-columns"><article><span class="small-label">ACCU / 資金側</span><h3>股價下跌可能帶來雙重壓力</h3><ul><li>當天買股數量增加，購股現金需求上升。</li><li>合約市值變差，可能同時被要求追加擔保品。</li><li>交割價款與保證金如何抵扣，要看資金安排；不能自動視為可互換，也不能簡單重複相加。</li></ul></article><article><span class="small-label">DECU / 股票側</span><h3>備兌和不足額交付，風險不同</h3><ul><li><strong>備兌：</strong>持有足夠股票，可按約交付；仍可能有未售股票的下跌風險和低於市場價賣出的機會成本。</li><li><strong>股票不足：</strong>可能要高價購股，再按低執行價交付。若無其他保護，股價上漲帶來的補購損失理論上沒有上限。</li></ul></article></div>
+        <div class="teaching-note"><span class="note-label">實際盈虧 ≠ 機會成本</span><p>原來以 80 買入股票，按 Decu 的 110 賣出，原持股每股賺 30；如果當時市場價是 130，相對市場價每股少收 20。模擬器的 Decu“相對期末賣股的差額”衡量後者，不能當作原持倉利潤。</p></div>
+        <details class="explain"><summary>提前平倉為什麼不只看已累計的虧損？</summary><div><p>提前終止通常要按剩餘合約的市值結算，可能另有價差、手續費或流動性成本。估值還受剩餘期限、波動度、利率、股利及信用等因素影響。不能用“已經買了多少股 × 今天價差”代替整個合約的平倉報價。<a class="citation" href="#source-dbs">[2]</a></p><p>此外要核對交易幣種、股票幣種與資金幣種是否一致；貨幣轉換、稅費和融資成本可能改變最終結果。</p></div></details>
       </section>
 
       <section class="lesson" id="wrapper">
-        <div class="section-heading"><span class="section-number">07</span><div><div class="eyebrow">PAYOFF ≠ LEGAL FORM ≠ TRADING VENUE</div><h2>Note 与 OTC，先分清比较的是哪一层</h2></div></div>
-        <p class="section-intro"><strong>Accu / Decu</strong> 描述收益和义务结构；<strong>Note</strong> 描述证券／债务工具形式；<strong>OTC</strong> 描述场外交易。一只 Note 也可以在场外发行或交易，所以“Note 和 OTC”不是严格互斥的分类。</p>
-        <div class="classification"><div><span>01 / 收益机制</span><b>Accu · Decu · 其他</b></div><div><span>02 / 法律形式</span><b>Note · 双边衍生品合约</b></div><div><span>03 / 交易与交割</span><b>场外／场内 · 现金／股票</b></div></div>
-        <h3 class="table-title">实务中真正想比较的：全额缴款 Note 与双边 OTC 衍生品</h3>
-        <div class="table-wrap"><table class="wrapper-table"><thead><tr><th>比较维度</th><th>通常的全额缴款 Note</th><th>双边 OTC Accu / Decu 合约</th></tr></thead><tbody><tr><th>法律关系</th><td>投资者持有发行人发行的证券，通常是发行人的债务义务</td><td>客户与交易对手订立衍生品合同，各自承担约定义务</td></tr><tr><th>开始时资金</th><td>通常缴付认购本金</td><td>可能缴付保证金、提供抵押品，或采用其他资金安排</td></tr><tr><th>后续追加义务</th><td>普通全额缴款且无追加义务的 Note，通常没有产品内的追缴保证金；外部融资另计</td><td>可能有追加抵押品、购股现金或交股要求</td></tr><tr><th>结算</th><td>按发行条款：可能现金兑付、股票交付或特定组合</td><td>按确认书：可能实物交割或现金差额</td></tr><tr><th>文件</th><td>发行文件、最终条款、认购／托管安排</td><td>主协议、交易确认书、抵押品／保证金文件</td></tr><tr><th>提前退出</th><td>看有没有二级市场或发行人回购；可能有折价和流动性限制</td><td>看能否平仓；按剩余合约市值及合同约定成本处理</td></tr><tr><th>信用风险</th><td>承担发行人及适用保证人的信用风险；很多结构性 Note 为无担保债务</td><td>承担交易对手风险；抵押、净额结算等安排会影响风险</td></tr></tbody></table></div>
-        <div class="teaching-note"><span class="note-label">看到“Accumulator Note”怎么办？</span><p>先确认本金如何使用、会否分批交股票、未用资金如何处理、到期如何兑付，以及客户还有没有追加付款义务。名称不能证明它和普通 OTC Accu 有同样现金流。<strong>全额缴款也不代表保本。</strong><a class="citation" href="#source-sec">[5]</a></p></div>
+        <div class="section-heading"><span class="section-number">07</span><div><div class="eyebrow">PAYOFF ≠ LEGAL FORM ≠ TRADING VENUE</div><h2>Note 與 OTC，先分清比較的是哪一層</h2></div></div>
+        <p class="section-intro"><strong>Accu / Decu</strong> 描述收益和義務結構；<strong>Note</strong> 描述證券／債務工具形式；<strong>OTC</strong> 描述場外交易。一隻 Note 也可以在場外發行或交易，所以“Note 和 OTC”不是嚴格互斥的分類。</p>
+        <div class="classification"><div><span>01 / 收益機制</span><b>Accu · Decu · 其他</b></div><div><span>02 / 法律形式</span><b>Note · 雙邊衍生品合約</b></div><div><span>03 / 交易與交割</span><b>場外／場內 · 現金／股票</b></div></div>
+        <h3 class="table-title">實務中真正想比較的：全額繳款 Note 與雙邊 OTC 衍生品</h3>
+        <div class="table-wrap"><table class="wrapper-table"><thead><tr><th>比較維度</th><th>通常的全額繳款 Note</th><th>雙邊 OTC Accu / Decu 合約</th></tr></thead><tbody><tr><th>法律關係</th><td>投資者持有發行人發行的證券，通常是發行人的債務義務</td><td>客戶與交易對手訂立衍生品合約，各自承擔約定義務</td></tr><tr><th>開始時資金</th><td>通常繳付認購本金</td><td>可能繳付保證金、提供擔保品，或採用其他資金安排</td></tr><tr><th>後續追加義務</th><td>普通全額繳款且無追加義務的 Note，通常沒有產品內的追繳保證金；外部融資另計</td><td>可能有追加擔保品、購股現金或交股要求</td></tr><tr><th>結算</th><td>按發行條款：可能現金兌付、股票交付或特定組合</td><td>按確認書：可能實物交割或現金差額</td></tr><tr><th>文件</th><td>發行文件、最終條款、認購／託管安排</td><td>主協議、交易確認書、擔保品／保證金文件</td></tr><tr><th>提前退出</th><td>看有沒有二級市場或發行人回購；可能有折價和流動性限制</td><td>看能否平倉；按剩餘合約市值及合約約定成本處理</td></tr><tr><th>信用風險</th><td>承擔發行人及適用保證人的信用風險；很多結構性 Note 為無擔保債務</td><td>承擔交易對手風險；抵押、淨額結算等安排會影響風險</td></tr></tbody></table></div>
+        <div class="teaching-note"><span class="note-label">看到“Accumulator Note”怎麼辦？</span><p>先確認本金如何使用、會否分批交股票、未用資金如何處理、到期如何兌付，以及客戶還有沒有追加付款義務。名稱不能證明它和普通 OTC Accu 有同樣現金流。<strong>全額繳款也不代表保本。</strong><a class="citation" href="#source-sec">[5]</a></p></div>
       </section>
 
       <section class="lesson" id="terms">
-        <div class="section-heading"><span class="section-number">08</span><div><div class="eyebrow">TERM SHEET READING GUIDE</div><h2>拿到条款，按这八步读</h2></div></div>
-        <p class="section-intro">打开一份新报价时，用这张清单还原产品。下方勾选只帮助记录阅读进度，存在当前浏览器中。</p>
+        <div class="section-heading"><span class="section-number">08</span><div><div class="eyebrow">TERM SHEET READING GUIDE</div><h2>拿到條款，按這八步讀</h2></div></div>
+        <p class="section-intro">開啟一份新報價時，用這張清單還原產品。下方勾選只幫助記錄閱讀進度，存在當前瀏覽器中。</p>
         <div class="term-checklist">
-          <label><input type="checkbox" data-check="underlying"><span><b>01 / 买还是卖？标的是什么？</b><small>股票代码、交易所、币种、单一股票或篮子；谁决定交付哪只股票。</small></span></label>
-          <label><input type="checkbox" data-check="strike"><span><b>02 / 每天按什么价、多少股？</b><small>初始参考价、固定／变动执行价、基础数量、观察日和期限。</small></span></label>
-          <label><input type="checkbox" data-check="gearing"><span><b>03 / 加倍如何触发、是否锁定？</b><small>每日判断还是触发后持续；严格大于／小于还是包含等值；最高数量。</small></span></label>
-          <label><input type="checkbox" data-check="ko"><span><b>04 / KO 怎么观察？</b><small>障碍价、盘中／收盘／指定日期、KO 当日股数、既有义务的处理。</small></span></label>
-          <label><input type="checkbox" data-check="ki"><span><b>05 / 有 KI 或保证期吗？</b><small>KI 激活什么；最低数量如何补足；保证期内是否观察 KO。</small></span></label>
-          <label><input type="checkbox" data-check="settlement"><span><b>06 / 实物还是现金，哪天交割？</b><small>现金差额的参考价；结算币种；股票账户、碎股与延期安排。</small></span></label>
-          <label><input type="checkbox" data-check="funding"><span><b>07 / 最大现金、股票及抵押品需求？</b><small>正常／不利／极端情境；备兑股票是否冻结；保证金与交割资金的衔接。</small></span></label>
-          <label><input type="checkbox" data-check="exit"><span><b>08 / 如何退出，特殊事件怎么办？</b><small>平仓报价、费用、公司行动、市场中断、违约、计算代理及适用文件。</small></span></label>
+          <label><input type="checkbox" data-check="underlying"><span><b>01 / 買還是賣？標的是什麼？</b><small>股票程式碼、交易所、幣種、單一股票或籃子；誰決定交付哪隻股票。</small></span></label>
+          <label><input type="checkbox" data-check="strike"><span><b>02 / 每天按什麼價、多少股？</b><small>初始參考價、固定／變動執行價、基礎數量、觀察日和期限。</small></span></label>
+          <label><input type="checkbox" data-check="gearing"><span><b>03 / 加倍如何觸發、是否鎖定？</b><small>每日判斷還是觸發後持續；嚴格大於／小於還是包含等值；最高數量。</small></span></label>
+          <label><input type="checkbox" data-check="ko"><span><b>04 / KO 怎麼觀察？</b><small>障礙價、盤中／收盤／指定日期、KO 當日股數、既有義務的處理。</small></span></label>
+          <label><input type="checkbox" data-check="ki"><span><b>05 / 有 KI 或保證期嗎？</b><small>KI 啟用什麼；最低數量如何補足；保證期內是否觀察 KO。</small></span></label>
+          <label><input type="checkbox" data-check="settlement"><span><b>06 / 實物還是現金，哪天交割？</b><small>現金差額的參考價；結算幣種；股票賬戶、碎股與延期安排。</small></span></label>
+          <label><input type="checkbox" data-check="funding"><span><b>07 / 最大現金、股票及擔保品需求？</b><small>正常／不利／極端情境；備兌股票是否凍結；保證金與交割資金的銜接。</small></span></label>
+          <label><input type="checkbox" data-check="exit"><span><b>08 / 如何退出，特殊事件怎麼辦？</b><small>平倉報價、費用、公司行動、市場中斷、違約、計算代理及適用文件。</small></span></label>
         </div>
-        <div class="checklist-footer"><span id="checklist-progress" aria-live="polite">已核对 0 / 8 项</span><button type="button" id="reset-checklist" class="text-button">重置阅读进度</button></div>
+        <div class="checklist-footer"><span id="checklist-progress" aria-live="polite">已核對 0 / 8 項</span><button type="button" id="reset-checklist" class="text-button">重置閱讀進度</button></div>
       </section>
 
       <section class="lesson appendix" id="glossary">
-        <div class="section-heading"><span class="section-number appendix-number">A</span><div><div class="eyebrow">DESK REFERENCE</div><h2>术语速查</h2></div></div>
-        <div class="glossary-grid"><div><b>Underlying / 标的</b><p>决定产品结果的股票或其他资产。</p></div><div><b>Initial price / 期初价</b><p>签约时的参考价，不是保证未来能买卖的市场价。</p></div><div><b>Strike / Forward price</b><p>按约履行买卖义务的执行价 K。</p></div><div><b>Daily quantity / 基础股数</b><p>每个观察日正常情境下的数量。</p></div><div><b>Gearing / 数量倍数</b><p>特定情境把基础数量放大，例如 2x。</p></div><div><b>Fixing / Observation</b><p>用于决定当次数量或触发事件的观察。</p></div><div><b>KO / Knock-out</b><p>触发后结束条款指定的后续部分。</p></div><div><b>KI / Knock-in</b><p>触发后激活条款指定的规则。</p></div><div><b>Guaranteed period</b><p>约定的最低履约期间／数量，不保证收益。</p></div><div><b>Settlement / 结算</b><p>按约交换股票与现金，或收付净差额。</p></div><div><b>Margin / 保证金</b><p>担保履约的抵押安排，不是最大亏损。</p></div><div><b>MTM / Mark-to-market</b><p>当前合约估值，包含未来义务的价值。</p></div></div>
+        <div class="section-heading"><span class="section-number appendix-number">A</span><div><div class="eyebrow">DESK REFERENCE</div><h2>術語速查</h2></div></div>
+        <div class="glossary-grid"><div><b>Underlying / 標的</b><p>決定產品結果的股票或其他資產。</p></div><div><b>Initial price / 期初價</b><p>簽約時的參考價，不是保證未來能買賣的市場價。</p></div><div><b>Strike / Forward price</b><p>按約履行買賣義務的執行價 K。</p></div><div><b>Daily quantity / 基礎股數</b><p>每個觀察日正常情境下的數量。</p></div><div><b>Gearing / 數量倍數</b><p>特定情境把基礎數量放大，例如 2x。</p></div><div><b>Fixing / Observation</b><p>用於決定當次數量或觸發事件的觀察。</p></div><div><b>KO / Knock-out</b><p>觸發後結束條款指定的後續部分。</p></div><div><b>KI / Knock-in</b><p>觸發後啟用條款指定的規則。</p></div><div><b>Guaranteed period</b><p>約定的最低履約期間／數量，不保證收益。</p></div><div><b>Settlement / 結算</b><p>按約交換股票與現金，或收付淨差額。</p></div><div><b>Margin / 保證金</b><p>擔保履約的抵押安排，不是最大虧損。</p></div><div><b>MTM / Mark-to-market</b><p>當前合約估值，包含未來義務的價值。</p></div></div>
       </section>
 
       <section class="lesson appendix" id="knowledge-check">
-        <div class="section-heading"><span class="section-number appendix-number">B</span><div><div class="eyebrow">CHECK YOUR UNDERSTANDING</div><h2>三道题，检查是否真正看懂</h2></div></div>
+        <div class="section-heading"><span class="section-number appendix-number">B</span><div><div class="eyebrow">CHECK YOUR UNDERSTANDING</div><h2>三道題，檢查是否真正看懂</h2></div></div>
         <div class="quiz-grid">
-          <fieldset class="quiz" data-quiz="ko"><legend>01 / Accu 上涨触发 KO，代表什么？</legend><button type="button" data-answer="wrong">之前累计买股的损失自动消失</button><button type="button" data-answer="correct">按合同停止后续部分，既有义务仍须处理</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
-          <fieldset class="quiz" data-quiz="margin"><legend>02 / 缴付 30% 保证金，是否最多亏 30%？</legend><button type="button" data-answer="wrong">是，保证金就是亏损上限</button><button type="button" data-answer="correct">否，应另算全部履约义务和极端损失</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
-          <fieldset class="quiz" data-quiz="note"><legend>03 / Note 和 OTC 是互斥分类吗？</legend><button type="button" data-answer="correct">不是，Note 也可以在场外发行或交易</button><button type="button" data-answer="wrong">是，Note 一定是交易所上市产品</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
+          <fieldset class="quiz" data-quiz="ko"><legend>01 / Accu 上漲觸發 KO，代表什麼？</legend><button type="button" data-answer="wrong">之前累計買股的損失自動消失</button><button type="button" data-answer="correct">按合約停止後續部分，既有義務仍須處理</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
+          <fieldset class="quiz" data-quiz="margin"><legend>02 / 繳付 30% 保證金，是否最多虧 30%？</legend><button type="button" data-answer="wrong">是，保證金就是虧損上限</button><button type="button" data-answer="correct">否，應另算全部履約義務和極端損失</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
+          <fieldset class="quiz" data-quiz="note"><legend>03 / Note 和 OTC 是互斥分類嗎？</legend><button type="button" data-answer="correct">不是，Note 也可以在場外發行或交易</button><button type="button" data-answer="wrong">是，Note 一定是交易所上市產品</button><p class="quiz-feedback" aria-live="polite"></p></fieldset>
         </div>
       </section>
 
       <section class="lesson appendix" id="sources">
-        <div class="section-heading"><span class="section-number appendix-number">C</span><div><div class="eyebrow">SOURCE NOTES</div><h2>继续阅读，核对原始资料</h2></div></div>
-        <p class="section-intro">以下资料用于说明一般机制，银行手册仅代表各自条款；较早资料不代表当前报价或销售条件。本站所有股价、数量和保证金比例均为教学假设。</p>
-        <ol class="source-list"><li id="source-cfa"><a href="https://rpc.cfainstitute.org/research/foundation/2017/asian-structured-products" target="_blank" rel="noopener noreferrer"><span>CFA Institute / Asian Structured Products</span><b aria-hidden="true">↗</b></a><p>2017 · Accu / Decu 机制、期权视角与结构变体。</p></li><li id="source-dbs"><a href="https://www.dbs.com.hk/iwov-resources/pdf/investments/5.%20Product%20Booklet%20-%20OTC%20AQ%20DQ%20on%20Equity%20en.pdf" target="_blank" rel="noopener noreferrer"><span>DBS / OTC Equity Accumulator & Decumulator booklet</span><b aria-hidden="true">↗</b></a><p>2017 · 数量、保证期、交割、保证金与提前终止；以该行产品为例。</p></li><li id="source-boci"><a href="https://www.bocionline.com/en/info_center/education/equity_structured_product/index.shtml" target="_blank" rel="noopener noreferrer"><span>BOCI / Equity structured product education</span><b aria-hidden="true">↗</b></a><p>连续远期交易、备兑 Decu、数量倍数及持股权利。</p></li><li id="source-dahsing"><a href="https://www.dahsing.com/pdf/private_banking/pb_services_agreement_en.pdf" target="_blank" rel="noopener noreferrer"><span>Dah Sing Bank / Private Banking Services Agreement</span><b aria-hidden="true">↗</b></a><p>Schedule C · 条件触发、实物与现金结算的合约范例；请看具体版本。</p></li><li id="source-sec"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-76" target="_blank" rel="noopener noreferrer"><span>SEC Investor.gov / Structured Notes Investor Bulletin</span><b aria-hidden="true">↗</b></a><p>2015 · 结构性票据的发行人信用、复杂收益与流动性风险。</p></li></ol>
+        <div class="section-heading"><span class="section-number appendix-number">C</span><div><div class="eyebrow">SOURCE NOTES</div><h2>繼續閱讀，核對原始資料</h2></div></div>
+        <p class="section-intro">以下資料用於說明一般機制，銀行手冊僅代表各自條款；較早資料不代表當前報價或銷售條件。本站所有股價、數量和保證金比例均為教學假設。</p>
+        <ol class="source-list"><li id="source-cfa"><a href="https://rpc.cfainstitute.org/research/foundation/2017/asian-structured-products" target="_blank" rel="noopener noreferrer"><span>CFA Institute / Asian Structured Products</span><b aria-hidden="true">↗</b></a><p>2017 · Accu / Decu 機制、期權視角與結構變體。</p></li><li id="source-dbs"><a href="https://www.dbs.com.hk/iwov-resources/pdf/investments/5.%20Product%20Booklet%20-%20OTC%20AQ%20DQ%20on%20Equity%20en.pdf" target="_blank" rel="noopener noreferrer"><span>DBS / OTC Equity Accumulator & Decumulator booklet</span><b aria-hidden="true">↗</b></a><p>2017 · 數量、保證期、交割、保證金與提前終止；以該行產品為例。</p></li><li id="source-boci"><a href="https://www.bocionline.com/en/info_center/education/equity_structured_product/index.shtml" target="_blank" rel="noopener noreferrer"><span>BOCI / Equity structured product education</span><b aria-hidden="true">↗</b></a><p>連續遠期交易、備兌 Decu、數量倍數及持股權利。</p></li><li id="source-dahsing"><a href="https://www.dahsing.com/pdf/private_banking/pb_services_agreement_en.pdf" target="_blank" rel="noopener noreferrer"><span>Dah Sing Bank / Private Banking Services Agreement</span><b aria-hidden="true">↗</b></a><p>Schedule C · 條件觸發、實物與現金結算的合約範例；請看具體版本。</p></li><li id="source-sec"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-76" target="_blank" rel="noopener noreferrer"><span>SEC Investor.gov / Structured Notes Investor Bulletin</span><b aria-hidden="true">↗</b></a><p>2015 · 結構性票據的發行人信用、複雜收益與流動性風險。</p></li></ol>
       </section>
 
-      <footer id="open-source" class="site-footer"><div><span class="brand-mark">A/D</span><h2>把规则看清楚，<br>再讨论产品是否合适。</h2></div><div class="footer-details"><span class="small-label">OPEN SOURCE / MIT</span><p>原创网页代码、教学文字和图表采用 MIT 许可证。外部链接资料的权利属于原作者。本站为独立教学项目，与所链接机构无关联。</p><div class="footer-links"><a href="LICENSE" target="_blank" rel="noopener">许可证 ↗</a><a href="https://github.com/alan99840/accu-decu-academy" target="_blank" rel="noopener" id="repository-link">GitHub 源码 ↗</a><a href="#top">返回顶部 ↑</a></div><p class="disclaimer">仅作一般产品机制教学，不构成投资建议、报价、产品销售材料或适当性判断。实际义务以具体合同为准。</p></div></footer>
+      <footer id="open-source" class="site-footer"><div><span class="brand-mark">A/D</span><h2>把規則看清楚，<br>再討論產品是否合適。</h2></div><div class="footer-details"><span class="small-label">OPEN SOURCE / MIT</span><p>原創網頁程式碼、教學文字和圖表採用 MIT 許可證。外部連結資料的權利屬於原作者。本站為獨立教學專案，與所連結機構無關聯。</p><div class="footer-links"><a href="LICENSE" target="_blank" rel="noopener">許可證 ↗</a><a href="README.md" target="_blank" rel="noopener" id="repository-link">專案說明 ↗</a><a href="#top">返回頂部 ↑</a></div><p class="disclaimer">僅作一般商品機制教學，不構成投資建議、報價、產品銷售材料或投資人適合度評估。實際義務以具體合約為準。</p></div></footer>
     </main>
   </div>
 <script>
@@ -242,7 +242,7 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
       cumulative += shares;
       const cash = shares * strike;
       const cashDifference = shares * (accu ? price - strike : strike - price);
-      const status = day === koDay ? '触发 KO' : koDay !== null ? 'KO 后停止' : adverse && gearing === 2 ? '不利 · 2x' : '正常 · 1x';
+      const status = day === koDay ? '觸發 KO' : koDay !== null ? 'KO 後停止' : adverse && gearing === 2 ? '不利 · 2x' : '正常 · 1x';
       return {day, price, shares, cash, cashDifference, cumulative, adverse: adverse && shares > 0, status};
     });
     const quantity = cumulative;
@@ -308,9 +308,9 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
     price.replaceChildren(); quantity.replaceChildren();
     price.setAttribute('viewBox',`0 0 ${width} ${ph}`); price.setAttribute('height',ph);
     quantity.setAttribute('viewBox',`0 0 ${width} ${qh}`); quantity.setAttribute('height',qh);
-    price.setAttribute('aria-label',`10 个观察日的股价路径；执行价 ${m.strike}，KO ${m.barrier}。${m.koDay ? '第 '+m.koDay+' 日敲出。' : '没有敲出。'} 可通过下方滑块或逐日表读取数据。`);
-    quantity.setAttribute('aria-label',`每日${m.accu?'买入':'卖出'}义务共 ${m.quantity} 股；${m.rows.map(r=>'第'+r.day+'日 '+r.shares+'股').join('，')}`);
-    add(price,'title',{},'股价与执行价 / KO 障碍价'); add(quantity,'title',{},'每日股数');
+    price.setAttribute('aria-label',`10 個觀察日的股價路徑；執行價 ${m.strike}，KO ${m.barrier}。${m.koDay ? '第 '+m.koDay+' 日敲出。' : '沒有敲出。'} 可透過下方滑桿或逐日表讀取資料。`);
+    quantity.setAttribute('aria-label',`每日${m.accu?'買入':'賣出'}義務共 ${m.quantity} 股；${m.rows.map(r=>'第'+r.day+'日 '+r.shares+'股').join('，')}`);
+    add(price,'title',{},'股價與執行價 / KO 障礙價'); add(quantity,'title',{},'每日股數');
     for (let i=0;i<=4;i++) {
       const value = min+(max-min)*i/4;
       add(price,'line',{x1:left,x2:width-right,y1:y(value),y2:y(value),stroke:'var(--line)','stroke-opacity':.65});
@@ -340,7 +340,7 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
     m.rows.forEach(r=>{
       add(price,'circle',{cx:x(r.day),cy:y(r.price),r:3,fill:m.koDay&&r.day>m.koDay?'var(--muted)':'var(--brand-red)','fill-opacity':m.koDay && r.day > m.koDay ? 0.4 : 1});
       const hit = add(price,'circle',{cx:x(r.day),cy:y(r.price),r:12,fill:'transparent','data-day':r.day,class:'chart-point'});
-      hit.appendChild(svgNode('title',{},`第 ${r.day} 日：股价 ${r.price}，${r.shares} 股，${r.status}`));
+      hit.appendChild(svgNode('title',{},`第 ${r.day} 日：股價 ${r.price}，${r.shares} 股，${r.status}`));
       add(quantity,'rect',{x:x(r.day)-bw/2,y:qy(r.shares),width:bw,height:qy(0)-qy(r.shares),fill:'var(--brand-red)','fill-opacity':r.shares>100?1:.45,'data-day':r.day,class:'chart-point'});
       if (!narrow || tickDays.includes(r.day)) add(quantity,'text',{x:x(r.day),y:qy(r.shares)-7,'text-anchor':'middle',style:r.shares>100?'fill:var(--brand-red)':''},String(r.shares));
     });
@@ -355,7 +355,7 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
     $('day-output').textContent = 'D'+String(inspectedDay).padStart(2,'0');
     $('day-detail').replaceChildren();
     const detail = $('day-detail');
-    detail.append('股价 '); const p=document.createElement('strong');p.textContent=r.price;detail.append(p,' · ');
+    detail.append('股價 '); const p=document.createElement('strong');p.textContent=r.price;detail.append(p,' · ');
     const q=document.createElement('strong');q.textContent=r.shares+' 股';detail.append(q,' · '+r.status);
     if (chartSize && $('inspect-guide')) {
       const x=chartSize.x(inspectedDay);
@@ -372,28 +372,28 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
       button.classList.toggle('selected',selected);button.setAttribute('aria-pressed',String(selected));
     });
     $('scenario').value=state.scenario;$('gearing').value=state.gearing;$('settlement-mode').value=state.settlement;
-    $('sim-terms').innerHTML=`<span>期初 <b>100</b></span><span>执行价 <b>${m.strike}</b></span><span>KO <b>${m.barrier}</b></span><span>基础 <b>100 股/日</b></span><span>币种 <b>HKD</b></span>`;
-    $('quantity-chart-title').innerHTML=`02 / 每日${m.accu?'买入':'卖出'}义务 <span class="chart-unit">SHARES</span>`;
-    $('quantity-label').textContent=cashMode?'累计等价股数':m.accu?'累计买股':'累计卖股／交付';
+    $('sim-terms').innerHTML=`<span>期初 <b>100</b></span><span>執行價 <b>${m.strike}</b></span><span>KO <b>${m.barrier}</b></span><span>基礎 <b>100 股/日</b></span><span>幣種 <b>HKD</b></span>`;
+    $('quantity-chart-title').innerHTML=`02 / 每日${m.accu?'買入':'賣出'}義務 <span class="chart-unit">SHARES</span>`;
+    $('quantity-label').textContent=cashMode?'累計等價股數':m.accu?'累計買股':'累計賣股／交付';
     $('total-quantity').textContent=number(m.quantity)+' 股';
-    $('quantity-description').textContent=cashMode?'用于计算差额，不交付股票':'按合同累计的实物义务';
-    $('cash-label').textContent=cashMode?'净现金结算':m.accu?'累计购股价款':'累计卖股收入';
+    $('quantity-description').textContent=cashMode?'用於計算差額，不交付股票':'按合約累計的實物義務';
+    $('cash-label').textContent=cashMode?'淨現金結算':m.accu?'累計購股價款':'累計賣股收入';
     $('total-cash').textContent=cashMode?money(m.cashPnl,true):money(m.cash);
     $('total-cash').classList.toggle('negative',cashMode&&m.cashPnl<0);
     $('total-cash').classList.toggle('positive',cashMode&&m.cashPnl>0);
-    $('cash-description').textContent=cashMode?(m.cashPnl<0?'客户净付款':m.cashPnl>0?'客户净收款':'净差额为零'):'股数 × 执行价';
-    $('pnl-label').textContent=cashMode?'本合同结算新增持股':m.accu?'期末股票浮动损益':'相对期末卖股的差额';
+    $('cash-description').textContent=cashMode?(m.cashPnl<0?'客戶淨付款':m.cashPnl>0?'客戶淨收款':'淨差額為零'):'股數 × 執行價';
+    $('pnl-label').textContent=cashMode?'本合約結算新增持股':m.accu?'期末股票浮動損益':'相對期末賣股的差額';
     const pnl=cashMode?m.cashPnl:m.pnl;
     $('total-pnl').textContent=cashMode?'0 股':money(pnl,true);$('total-pnl').className='mono '+(!cashMode&&pnl<0?'negative':!cashMode&&pnl>0?'positive':'');
-    $('pnl-description').textContent=cashMode?'现金差额结算不交付股票':m.accu?'已买股数 × 期末价 − 价款':'卖股收入 − 已卖股数 × 期末价';
-    $('sim-status').innerHTML=m.koDay?`<b>第 ${m.koDay} 日 KO。</b> 当日及之后不再计量，此前 ${number(m.quantity)} 股的${cashMode?'等价差额义务':'买卖义务'}仍按原定批次结算。虚线显示 KO 后的标的走势。`:'<b>没有 KO。</b> 持续到第 10 日；第 5、10 日按各批次累计义务结算。';
-    if (m.koDay && !cashMode && m.accu) $('sim-status').append(' 已取得股票在 KO 后仍继续随市价涨跌。');
+    $('pnl-description').textContent=cashMode?'現金差額結算不交付股票':m.accu?'已買股數 × 期末價 − 價款':'賣股收入 − 已賣股數 × 期末價';
+    $('sim-status').innerHTML=m.koDay?`<b>第 ${m.koDay} 日 KO。</b> 當日及之後不再計量，此前 ${number(m.quantity)} 股的${cashMode?'等價差額義務':'買賣義務'}仍按原定批次結算。虛線顯示 KO 後的標的走勢。`:'<b>沒有 KO。</b> 持續到第 10 日；第 5、10 日按各批次累計義務結算。';
+    if (m.koDay && !cashMode && m.accu) $('sim-status').append(' 已取得股票在 KO 後仍繼續隨市價漲跌。');
     const comparison=$('path-lesson');comparison.hidden=!state.scenario.startsWith('same-');
     if (!comparison.hidden) {
       const a=AccuDecuModel.calculate({...state,scenario:'same-a'}),b=AccuDecuModel.calculate({...state,scenario:'same-b'});
-      comparison.textContent=cashMode?`同样终价 100：A 累计 ${number(a.quantity)} 股等价义务、净差额 ${money(a.cashPnl,true)}；B 累计 ${number(b.quantity)} 股、净差额 ${money(b.cashPnl,true)}。现金差额既取决于股数，也取决于每个观察日的参考价。`:`同样终价 100：A 累计 ${number(a.quantity)} 股，B 累计 ${number(b.quantity)} 股。中途越过执行价会改变累计数量；在这条最终回到 100 的路径上，更多数量也可能使期末结果更高，不能据此推断加倍总是有利。`;
+      comparison.textContent=cashMode?`同樣終價 100：A 累計 ${number(a.quantity)} 股等價義務、淨差額 ${money(a.cashPnl,true)}；B 累計 ${number(b.quantity)} 股、淨差額 ${money(b.cashPnl,true)}。現金差額既取決於股數，也取決於每個觀察日的參考價。`:`同樣終價 100：A 累計 ${number(a.quantity)} 股，B 累計 ${number(b.quantity)} 股。中途越過執行價會改變累計數量；在這條最終回到 100 的路徑上，更多數量也可能使期末結果更高，不能據此推斷加倍總是有利。`;
     }
-    $('ledger-cash-heading').textContent=cashMode?'现金差额 HK$':'约定价款 HK$';
+    $('ledger-cash-heading').textContent=cashMode?'現金差額 HK$':'約定價款 HK$';
     $('daily-ledger').replaceChildren();
     m.rows.forEach(row=>{
       const tr=document.createElement('tr');
@@ -406,8 +406,8 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
       });
       $('daily-ledger').append(tr);
     });
-    $('ledger-total').innerHTML=`<tr><th colspan="3">合计</th><td>${number(m.quantity)}</td><td>${cashMode?(m.cashPnl<0?'−':m.cashPnl>0?'+':'')+number(m.cashPnl):number(m.cash)}</td></tr>`;
-    $('settlement-batches').innerHTML=m.batches.map(batch=>`<div>D${String(batch.day).padStart(2,'0')} 交割 / 第 ${batch.day-4}—${batch.day} 日义务<b>${cashMode?money(batch.cashDifference,true):number(batch.quantity)+' 股 · '+money(batch.cash)}</b></div>`).join('');
+    $('ledger-total').innerHTML=`<tr><th colspan="3">合計</th><td>${number(m.quantity)}</td><td>${cashMode?(m.cashPnl<0?'−':m.cashPnl>0?'+':'')+number(m.cashPnl):number(m.cash)}</td></tr>`;
+    $('settlement-batches').innerHTML=m.batches.map(batch=>`<div>D${String(batch.day).padStart(2,'0')} 交割 / 第 ${batch.day-4}—${batch.day} 日義務<b>${cashMode?money(batch.cashDifference,true):number(batch.quantity)+' 股 · '+money(batch.cash)}</b></div>`).join('');
     simulator.dataset.quantity=String(m.quantity);simulator.dataset.cash=String(m.cash);simulator.dataset.pnl=String(pnl);simulator.dataset.koDay=String(m.koDay||0);
     plotCharts();save();
   }
@@ -427,7 +427,7 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
     });
   });
   $('download-csv').addEventListener('click',()=>{
-    const csv=['产品,情境,结算假设,观察日,股价_HKD,股数,状态,约定价款_HKD,客户现金差额_HKD',...model.rows.map(r=>[state.product,state.scenario,state.settlement,r.day,r.price,r.shares,r.status,r.cash,r.cashDifference].join(',')),'','教学假设：收盘观察；KO 当日不计量；无 KI；无保证期；不计费用；现金按各观察日价定价。'].join('\r\n');
+    const csv=['產品,情境,結算假設,觀察日,股價_HKD,股數,狀態,約定價款_HKD,客戶現金差額_HKD',...model.rows.map(r=>[state.product,state.scenario,state.settlement,r.day,r.price,r.shares,r.status,r.cash,r.cashDifference].join(',')),'','教學假設：收盤觀察；KO 當日不計量；無 KI；無保證期；不計費用；現金按各觀察日價定價。'].join('\r\n');
     const url=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));
     const a=document.createElement('a');a.href=url;a.download=`${state.product}-${state.scenario}-${state.settlement}.csv`;a.click();
     setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -436,14 +436,14 @@ h1{font-weight:700;letter-spacing:-1.5px}h1 span{font-weight:600;letter-spacing:
   new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(plotCharts);}).observe($('price-chart').parentElement);
 
   const checklist=[...document.querySelectorAll('[data-check]')];
-  function updateChecklist(){state.checks=checklist.filter(c=>c.checked).map(c=>c.dataset.check);$('checklist-progress').textContent=`已核对 ${state.checks.length} / 8 项`;save();}
+  function updateChecklist(){state.checks=checklist.filter(c=>c.checked).map(c=>c.dataset.check);$('checklist-progress').textContent=`已核對 ${state.checks.length} / 8 項`;save();}
   checklist.forEach(c=>{c.checked=state.checks.includes(c.dataset.check);c.addEventListener('change',updateChecklist);});
   $('reset-checklist').addEventListener('click',()=>{checklist.forEach(c=>c.checked=false);updateChecklist();});updateChecklist();
-  const feedback={ko:'KO 处理后续部分；之前累计的义务不会自动消失。',margin:'保证金担保履约。全部价款、追加抵押品及极端损失须另算。',note:'Note 是法律形式，OTC 是交易场所，两者可以同时成立。'};
+  const feedback={ko:'KO 處理後續部分；之前累計的義務不會自動消失。',margin:'保證金擔保履約。全部價款、追加擔保品及極端損失須另算。',note:'Note 是法律形式，OTC 是交易場所，兩者可以同時成立。'};
   document.querySelectorAll('.quiz').forEach(quiz=>quiz.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{
     quiz.querySelectorAll('button').forEach(b=>{b.classList.remove('chosen-correct','chosen-wrong');b.setAttribute('aria-pressed','false');});
     const correct=button.dataset.answer==='correct';button.classList.add(correct?'chosen-correct':'chosen-wrong');button.setAttribute('aria-pressed','true');
-    quiz.querySelector('.quiz-feedback').textContent=(correct?'答对了。':'再想一想。')+feedback[quiz.dataset.quiz];
+    quiz.querySelector('.quiz-feedback').textContent=(correct?'答對了。':'再想一想。')+feedback[quiz.dataset.quiz];
   })));
   const menu=$('menu-button'),nav=$('course-nav');
   function closeMenu(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}
