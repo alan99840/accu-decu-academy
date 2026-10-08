@@ -105,12 +105,46 @@ def supplement(data, path):
     def rows(sheet):
         vals=book[sheet].iter_rows(values_only=True)
         headers=next(vals)
-        return [dict(zip(headers,r)) for r in vals if r and r[0]]
+        return [dict(zip(headers,r), _row=i) for i,r in enumerate(vals, start=2) if r and r[0]]
     def yes(v): return str(v or '').strip() == '是'
     def iso(v): return v.date().isoformat() if isinstance(v,datetime) else str(v or '')[:10]
+    # Transactions not yet written into the source XLSB can be recorded in the
+    # companion workbook. Keep the source workbook read-only and deduplicate IDs.
+    if '補充成交' in book.sheetnames:
+        supplemental = rows('補充成交')
+        underlyings = collections.defaultdict(list)
+        for r in rows('補充標的') if '補充標的' in book.sheetnames else []:
+            underlyings[str(r['成交ID'])].append(dict(raw=' '.join(str(r['Bloomberg代號']).split()),
+                symbol=symbol(r['Bloomberg代號']), initial=number(r.get('初始價'))))
+        for r in supplemental:
+            tid = str(r['成交ID'])
+            if tid in byid: raise ValueError(f'補充成交 {tid} 已存在於原始 XLSB，請移除重複補充列')
+            trade_date = iso(r['成交日'])
+            code = str(r.get('客戶代碼') or '').strip()
+            isin = str(r.get('ISIN') or '').strip()
+            if not code or not isin: raise ValueError(f'補充成交第 {r.get("成交ID")} 列缺少客戶代碼或 ISIN')
+            if any(t['isin'] == isin and t['clientCode'] == code and t['tradeDate'] == trade_date for t in data['trades']):
+                raise ValueError(f'補充成交 {isin}／{code}／{trade_date} 與原始 XLSB 可能重複，請核對')
+            us = underlyings.get(tid, [])
+            if not us: raise ValueError(f'補充成交 {tid} 缺少標的及初始價')
+            ko_raw = r.get('Autocall Level')
+            t = dict(id=tid, tradeDate=trade_date, issuer=str(r.get('發行商') or ''), clientCode=code,
+                isin=isin, productType=str(r.get('產品') or '未分類'), currency=str(r.get('幣別') or '未確認'),
+                tenorMonths=number(r.get('年期(月)')), amount=amount(r.get('認購金額')),
+                amountRaw=r.get('認購金額'), coupon=rate(r.get('年化票息')),
+                ko=rate(ko_raw), koRaw=ko_raw, ki=rate(r.get('Barrier／KI比例')),
+                strike=rate(r.get('Strike比例')), status=str(r.get('商品狀態') or '在期'),
+                issueDate=iso(r.get('Issue Date')), finalValuationDate=iso(r.get('Final Valuation Date')),
+                maturityDate=iso(r.get('Maturity Date')), observationDates=[], underlyings=us, issues=[],
+                source={'sheet':'補充成交','row':r['_row'],'pimsCode':str(r.get('PIMS代碼') or ''),
+                    'blotterId':str(r.get('BlotterID') or '')},
+                rule={'verified':False,'mode':'離散全數','comparison':'>=','koEnabled':None,
+                    'levelVerified':False,'scheduleVerified':False,'source':'','note':''})
+            data['trades'].append(t); byid[tid] = t
     for r in rows('條款確認'):
-        if r['成交ID'] not in byid: raise ValueError('補充表含未知成交ID，請先同步最新來源')
-        t=byid[r['成交ID']]
+        tid = str(r['成交ID'])
+        if tid not in byid: raise ValueError('補充表含未知成交ID，請先同步最新來源')
+        t=byid[tid]
         t['rule'].update(verified=yes(r.get('條款已核對')),mode=r.get('KO觀察方式') or '未確認',
             koEnabled={'是':True,'否':False}.get(r.get('有KO條款')),
             comparison=r.get('觸發比較') or '>=',levelVerified=yes(r.get('期初價及調整已核對')),
@@ -120,14 +154,18 @@ def supplement(data, path):
         if r.get('確認商品狀態'): t['status']=r['確認商品狀態']
     dates=collections.defaultdict(list)
     for r in rows('觀察日'):
-        if r['成交ID'] not in byid: raise ValueError('觀察日含未知成交ID')
-        dates[r['成交ID']].append(iso(r['觀察日']))
+        tid = str(r['成交ID'])
+        if tid not in byid: raise ValueError('觀察日含未知成交ID')
+        dates[tid].append(iso(r['觀察日']))
     for tid,ds in dates.items(): byid[tid]['observationDates']=sorted(set(ds))
     if '收盤價' in book.sheetnames:
         for r in rows('收盤價'):
             if str(r.get('未復權收盤價')) not in ('None',''):
                 d=iso(r['美國交易日']); s=str(r['美股代號']).upper()
                 data['prices'].setdefault(s,{})[d]={'close':float(r['未復權收盤價']), 'source':r.get('來源') or '手動匯入', 'verified':yes(r.get('已核對'))}
+    if '補充成交' in book.sheetnames: data['supplementFile'] = path.name
+    dates_asof = [t['tradeDate'] for t in data['trades']]
+    data['sourceAsOf'] = max([d for d in [data.get('sourceAsOf'), *dates_asof] if d])
     book.close()
 
 def main():
