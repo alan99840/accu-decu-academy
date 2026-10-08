@@ -75,9 +75,9 @@ export function alerts(trades,data,today){
   const a=[],e=evaluate(t,data);
   if(e.code==='candidate'||e.code==='potential')a.push({t,date:e.date,kind:e.code==='candidate'?'KO 條件符合':'KO 價格待核對',tone:'red',detail:e.reason});
   if(t.maturityDate&&t.maturityDate<today)a.push({t,date:t.maturityDate,kind:'到期狀態待更新',tone:'amber',detail:`Excel 狀態：${t.status}`});
-  if(t.maturityDate&&days(today,t.maturityDate)>=0&&days(today,t.maturityDate)<=30)a.push({t,date:t.maturityDate,kind:'30 日內到期',tone:'green',detail:`${days(today,t.maturityDate)} 日後到期`});
+  if(t.maturityDate){const left=days(today,t.maturityDate);if(left>=0&&left<=30)a.push({t,date:t.maturityDate,kind:left===0?'今日到期':'30 日內到期',tone:'green',detail:left===0?'今日到期':`${left} 日後到期`});}
   const next=t.observationDates.find(d=>d>=today);
-  if(next&&days(today,next)<=30)a.push({t,date:next,kind:t.rule?.koEnabled===false?'Fixing Date（無 KO）':t.rule?.scheduleVerified?'KO 觀察日':'Fixing Date 待核對',tone:'blue',detail:`${days(today,next)} 日後・${t.rule?.mode||'條款未確認'}${[0,6].includes(new Date(next+'T00:00:00Z').getUTCDay())?'・表列日為週末，日期調整待核對':''}`});
+  if(next){const left=days(today,next);if(left<=30)a.push({t,date:next,kind:t.rule?.koEnabled===false?'Fixing Date（無 KO）':t.rule?.scheduleVerified?'KO 觀察日':'Fixing Date 待核對',tone:'blue',detail:`${left===0?'今日觀察':`${left} 日後`}・${t.rule?.mode||'條款未確認'}${[0,6].includes(new Date(next+'T00:00:00Z').getUTCDay())?'・表列日為週末，日期調整待核對':''}`});}
   return a;
  }).sort((a,b)=>a.date.localeCompare(b.date));
 }
