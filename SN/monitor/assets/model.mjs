@@ -52,7 +52,8 @@ export function evaluate(t,data){
   let dates=t.observationDates.filter(d=>d<=end&&d<=t.maturityDate&&d>=t.tradeDate);
   if(rule.mode==='每日全數'||rule.mode==='每日記憶KO'){
     if(!Array.isArray(data.tradingDays))return fail('每日觀察缺少美國交易日曆');
-    dates=data.tradingDays.filter(d=>d>=t.observationDates[0]&&d<=t.maturityDate&&d<=end);
+    const lastObservation=t.finalValuationDate||t.maturityDate;
+    dates=data.tradingDays.filter(d=>d>=t.observationDates[0]&&d<=lastObservation&&d<=end);
   }
   if(!dates.length)return {code:'waiting',label:'尚未到觀察日',reason:`首個觀察日 ${t.observationDates[0]}`,events:[]};
   const memory=new Set(),events=[];
