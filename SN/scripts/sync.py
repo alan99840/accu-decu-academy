@@ -22,9 +22,9 @@ def rate(v):
 
 def amount(v):
     if isinstance(v, (int, float)): return float(v)
-    m = re.fullmatch(r'\s*([\d,.]+)\s*([kKmM]?)\s*', str(v or ''))
+    m = re.fullmatch(r'\s*(?:(?:USD|JPY|HKD|CNH|CNY)\s*)?((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s*(k|m|mio)?\s*', str(v or ''), re.I)
     if not m: return None
-    return float(m[1].replace(',', '')) * {'':1, 'k':1000, 'm':1000000}[m[2].lower()]
+    return float(m[1].replace(',', '')) * {'':1, 'k':1000, 'm':1000000, 'mio':1000000}[(m[2] or '').lower()]
 
 def symbol(v):
     raw = ' '.join(str(v).strip().split()).upper()
@@ -122,20 +122,25 @@ def supplement(data, path):
             trade_date = iso(r['成交日'])
             code = str(r.get('客戶代碼') or '').strip()
             isin = str(r.get('ISIN') or '').strip()
-            if not code or not isin: raise ValueError(f'補充成交第 {r.get("成交ID")} 列缺少客戶代碼或 ISIN')
-            if any(t['isin'] == isin and t['clientCode'] == code and t['tradeDate'] == trade_date for t in data['trades']):
+            if not code or (not isin and not yes(r.get('成交確認'))):
+                raise ValueError(f'補充成交第 {r.get("成交ID")} 列缺少客戶代碼或 ISIN；缺 ISIN 僅接受明確確認的成交')
+            if isin and any(t['isin'] == isin and t['clientCode'] == code and t['tradeDate'] == trade_date for t in data['trades']):
                 raise ValueError(f'補充成交 {isin}／{code}／{trade_date} 與原始 XLSB 可能重複，請核對')
             us = underlyings.get(tid, [])
             if not us: raise ValueError(f'補充成交 {tid} 缺少標的及初始價')
             ko_raw = r.get('Autocall Level')
             t = dict(id=tid, tradeDate=trade_date, issuer=str(r.get('發行商') or ''), clientCode=code,
-                isin=isin, productType=str(r.get('產品') or '未分類'), currency=str(r.get('幣別') or '未確認'),
+                isin=isin or 'ISIN 待補', isinPending=not bool(isin),
+                productType=str(r.get('產品') or '未分類'), currency=str(r.get('幣別') or '未確認'),
                 tenorMonths=number(r.get('年期(月)')), amount=amount(r.get('認購金額')),
                 amountRaw=r.get('認購金額'), coupon=rate(r.get('年化票息')),
                 ko=rate(ko_raw), koRaw=ko_raw, ki=rate(r.get('Barrier／KI比例')),
                 strike=rate(r.get('Strike比例')), status=str(r.get('商品狀態') or '在期'),
                 issueDate=iso(r.get('Issue Date')), finalValuationDate=iso(r.get('Final Valuation Date')),
-                maturityDate=iso(r.get('Maturity Date')), observationDates=[], underlyings=us, issues=[],
+                maturityDate=iso(r.get('Maturity Date')), observationDates=[], underlyings=us,
+                issues=(['客戶代碼待補'] if code=='待補客戶代碼' else [])+
+                    (['已確認成交；ISIN 待補'] if not isin else [])+
+                    (['最終期初價待補，暫不能判斷 KO'] if any(not (u['initial'] and u['initial']>0) for u in us) else []),
                 source={'sheet':'補充成交','row':r['_row'],'pimsCode':str(r.get('PIMS代碼') or ''),
                     'blotterId':str(r.get('BlotterID') or '')},
                 rule={'verified':False,'mode':'離散全數','comparison':'>=','koEnabled':None,
@@ -171,7 +176,8 @@ def supplement(data, path):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('source',type=Path);p.add_argument('--supplement',type=Path)
-    p.add_argument('--prices',type=Path);p.add_argument('--output',type=Path,default=ROOT/'private/dataset.json')
+    p.add_argument('--prices',type=Path);p.add_argument('--fx',type=Path,help='使用已核對的即期匯率快照；未提供時自動更新')
+    p.add_argument('--output',type=Path,default=ROOT/'private/dataset.json')
     a=p.parse_args(); data=extract(a.source)
     if a.supplement: supplement(data,a.supplement)
     if a.prices and a.prices.exists():
@@ -181,6 +187,11 @@ def main():
                 if not data['prices'].get(s,{}).get(dt,{}).get('verified'):
                     data['prices'].setdefault(s,{})[dt]=v
         data.update({k:prices.get(k) for k in ['priceCheckedAt','expectedPriceDate','priceSource','priceError','tradingDays']})
+    from fetch_fx import refresh
+    if a.fx:
+        data['fx']=json.loads(a.fx.read_text())
+    else:
+        data['fx']=refresh(ROOT/'private/fx.json')
     a.output.parent.mkdir(parents=True,exist_ok=True)
     a.output.write_text(json.dumps(data,ensure_ascii=False,indent=2))
     print(json.dumps({'trades':len(data['trades']),'sourceAsOf':data['sourceAsOf'],'output':str(a.output)},ensure_ascii=False))
