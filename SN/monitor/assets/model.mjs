@@ -1,21 +1,27 @@
 export const CLOSED = new Set(['提前贖回','提前到期','到期贖回','提前敲出','到期','承接股票']);
 export const pct=n=>Number.isFinite(n)?`${(n*100).toFixed(2)}%`:'—';
 export const days=(a,b)=>Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/86400000);
-export function summaries(trades,year,currency){
-  const selected=trades.filter(t=>(!year||t.tradeDate.startsWith(String(year)))&&(!currency||t.currency===currency));
-  const group=key=>Object.values(selected.reduce((m,t)=>{const k=key(t);m[k]??={label:k,count:0,amount:0,missing:0};m[k].count++;if(Number.isFinite(t.amount))m[k].amount+=t.amount;else m[k].missing++;return m;},{})).sort((a,b)=>a.label.localeCompare(b.label));
-  return {selected,total:selected.reduce((v,t)=>v+(t.amount??0),0),monthly:group(t=>t.tradeDate.slice(0,7)),quarterly:group(t=>`${t.tradeDate.slice(0,4)} Q${Math.ceil(Number(t.tradeDate.slice(5,7))/3)}`),annual:group(t=>t.tradeDate.slice(0,4)),types:group(t=>t.productType)};
+export function amountFor(t,currency,fx){
+  if(!Number.isFinite(t.amount))return null;
+  if(currency!=='HKD')return t.amount;
+  const rate=t.currency==='HKD'?1:fx?.rates?.[t.currency];
+  return Number.isFinite(rate)&&rate>0?t.amount*rate:null;
+}
+export function summaries(trades,year,currency,fx){
+  const selected=trades.filter(t=>(!year||t.tradeDate.startsWith(String(year)))&&(!currency||currency==='HKD'||t.currency===currency));
+  const group=key=>Object.values(selected.reduce((m,t)=>{const k=key(t),v=amountFor(t,currency,fx);m[k]??={label:k,count:0,amount:0,missing:0};m[k].count++;if(Number.isFinite(v))m[k].amount+=v;else m[k].missing++;return m;},{})).sort((a,b)=>a.label.localeCompare(b.label));
+  return {selected,total:selected.reduce((v,t)=>v+(amountFor(t,currency,fx)??0),0),missing:selected.filter(t=>amountFor(t,currency,fx)===null).length,monthly:group(t=>t.tradeDate.slice(0,7)),quarterly:group(t=>`${t.tradeDate.slice(0,4)} Q${Math.ceil(Number(t.tradeDate.slice(5,7))/3)}`),annual:group(t=>t.tradeDate.slice(0,4)),types:group(t=>t.productType)};
 }
 export const accountOf=t=>String(t.clientCode||'未填客戶代碼');
-export function accountSummaries(trades,data,today){
+export function accountSummaries(trades,data,today,currency){
  const grouped=new Map();
  for(const t of trades){const code=accountOf(t);if(!grouped.has(code))grouped.set(code,[]);grouped.get(code).push(t)}
  return [...grouped].map(([code,ts])=>{
   const open=ts.filter(t=>t.status==='在期'),overdue=open.filter(t=>t.maturityDate&&t.maturityDate<today);
   const events=alerts(ts,data,today),upcoming=events.filter(a=>a.date>=today),ko=events.filter(a=>['KO 條件符合','KO 價格待核對'].includes(a.kind));
-  const mix=summaries(ts,'','').types;
-  return {code,count:ts.length,amount:ts.reduce((n,t)=>n+(t.amount??0),0),missing:ts.filter(t=>t.amount==null).length,
-   openCount:open.length,openAmount:open.reduce((n,t)=>n+(t.amount??0),0),overdue:overdue.length,ko:ko.length,
+  const mix=summaries(ts,'',currency,data.fx).types;
+  return {code,count:ts.length,amount:ts.reduce((n,t)=>n+(amountFor(t,currency,data.fx)??0),0),missing:ts.filter(t=>amountFor(t,currency,data.fx)===null).length,
+   openCount:open.length,openAmount:open.reduce((n,t)=>n+(amountFor(t,currency,data.fx)??0),0),overdue:overdue.length,ko:ko.length,
    next:upcoming[0]||null,mix};
  }).sort((a,b)=>b.amount-a.amount||a.code.localeCompare(b.code));
 }
