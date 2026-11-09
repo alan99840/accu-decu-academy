@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import {monitor} from '../scripts/paths.mjs';
-const {evaluate,summaries,accountSummaries}=await import(path.join(monitor,'assets/model.mjs'));
+const {evaluate,summaries,accountSummaries,alerts,amountFor}=await import(path.join(monitor,'assets/model.mjs'));
 const t={id:'test',tradeDate:'2026-01-01',status:'在期',currency:'USD',amount:100000,productType:'FCN',ko:1,maturityDate:'2026-12-01',observationDates:['2026-02-02','2026-03-02'],underlyings:[{symbol:'A',initial:100},{symbol:'B',initial:100}],rule:{verified:true,source:'test termsheet',koEnabled:true,levelVerified:true,scheduleVerified:true,mode:'離散全數',comparison:'>='}};
 const d={expectedPriceDate:'2026-03-02',prices:{A:{'2026-02-02':{close:100},'2026-03-02':{close:90}},B:{'2026-02-02':{close:90},'2026-03-02':{close:100}}}};
 const copy=x=>structuredClone(x),run=(tt,dd=d)=>evaluate(tt,dd);
@@ -24,4 +24,35 @@ assert.equal(s.total,150000);assert.equal(s.selected.length,2);assert.equal(s.qu
 const accounts=accountSummaries([{...t,clientCode:'A'},{...t,id:'2',clientCode:'A',amount:50000},{...t,id:'3',clientCode:'B',amount:70000,status:'到期'}],d,'2026-03-03');
 assert.equal(accounts.length,2);assert.equal(accounts[0].amount,150000);assert.equal(accounts[0].count,2);assert.equal(accounts[1].openAmount,0);assert.equal(accounts.reduce((n,a)=>n+a.amount,0),220000);
 m=copy(t);m.rule.mode='每日記憶KO';daily=copy(d);daily.tradingDays=['2026-02-02','2026-03-02'];assert.equal(run(m,daily).code,'candidate');
-console.log('帳戶及 14 組核心邊界驗證通過：等值、記憶、日期、缺價、幣別與狀態。');
+const todayTrade={...copy(t),id:'TODAY',maturityDate:'2026-03-03',observationDates:['2026-03-03']};
+const todayAlerts=alerts([todayTrade],d,'2026-03-03');
+assert.equal(todayAlerts.find(a=>a.kind==='今日到期')?.detail,'今日到期');
+assert.equal(todayAlerts.find(a=>a.kind==='KO 觀察日')?.detail.startsWith('今日觀察'),true);
+assert.equal(todayAlerts.some(a=>a.detail.includes('0 日後')),false);
+const boundedDaily={...copy(t),rule:{...t.rule,mode:'每日全數'},finalValuationDate:'2026-02-02'};
+const afterFinal=copy(d);afterFinal.tradingDays=['2026-02-02','2026-03-02'];afterFinal.prices.A['2026-03-02'].close=100;
+assert.equal(run(boundedDaily,afterFinal).code,'clear');
+assert.deepEqual(run(boundedDaily,afterFinal).events.map(e=>e.date),['2026-02-02']);
+afterFinal.prices.B['2026-02-02'].close=100;
+assert.equal(run(boundedDaily,afterFinal).date,'2026-02-02');
+// Synthetic FX inputs test aggregation across currencies and period boundaries.
+const fx={rates:{HKD:1,USD:7.8,JPY:0.05,CNH:1.1}};
+const mixed=[{...copy(t),id:'NOV-USD',tradeDate:'2026-11-06',clientCode:'A',amount:700000},
+ {...copy(t),id:'NOV-JPY',tradeDate:'2026-11-06',clientCode:'B',currency:'JPY',amount:33000000},
+ {...copy(t),id:'OCT-CNH',tradeDate:'2026-10-01',clientCode:'A',currency:'CNH',amount:1000000},
+ {...copy(t),id:'OLD',tradeDate:'2025-11-06',clientCode:'A',amount:200000}];
+const original=copy(mixed),hk=summaries(mixed,'2026','HKD',fx);
+assert.equal(hk.total,8210000);assert.equal(hk.selected.length,3);
+assert.equal(hk.monthly.find(g=>g.label==='2026-11').amount,7110000);
+assert.equal(hk.quarterly.find(g=>g.label==='2026 Q4').amount,8210000);
+assert.equal(hk.annual[0].amount,hk.monthly.reduce((n,g)=>n+g.amount,0));
+assert.equal(summaries(mixed,'2026','USD',fx).total,700000);
+const ah=accountSummaries(hk.selected,{...d,fx},'2026-11-09','HKD');
+assert.equal(ah.reduce((n,a)=>n+a.amount,0),hk.total);
+assert.equal(ah.find(a=>a.code==='B').amount,1650000);
+assert.equal(amountFor({...t,currency:'EUR'},'HKD',fx),null);
+assert.equal(amountFor({...t,amount:null},'HKD',fx),null);
+const incomplete=summaries([...mixed,{...t,id:'UNKNOWN',tradeDate:'2026-11-09',currency:'EUR'}],'2026','HKD',fx);
+assert.equal(incomplete.missing,1);assert.equal(incomplete.selected.length,4);assert.equal(incomplete.total,hk.total);
+assert.deepEqual(mixed,original);
+console.log('帳戶、年季月港元折算及核心監控邊界驗證通過。');
